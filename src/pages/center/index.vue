@@ -5,16 +5,17 @@
   <div class="pageBox" v-on:scroll="pageScroll" ref="page">
 
     <!-- 搜索模块 -->
-    <com-search></com-search>
+    <div ref="search" style="margin-bottom: 5px;">
+      <com-search></com-search>
+    </div>
 
     <!-- 表格模块 -->
-    <com-table class="ComTable"
-      v-for="(item, index) in tableSignArr" :key="'comTable_' + index"
-      v-if="index === tableSignArr.length - 1"
-    ></com-table>
+    <div class="ComTable" ref="table">
+      <com-table :tableHeight="tableHeight" v-for="(item, index) in tableSignArr" :key="'comTable_' + index" v-if="index === tableSignArr.length - 1"></com-table>
+    </div>
 
     <!-- 分页 -->
-    <div class="paginationBox">
+    <div class="paginationBox" ref="pagination">
       <el-pagination class="comPagination" :page-size="rownum" :page-sizes="[10, 20, 30, 50, 100]" :total="pageCount" :current-page="pagenum"
         layout="prev, pager, next, total, jumper, sizes" prev-text="上一页" next-text="下一页"
         @size-change="pageChange('rownum', $event)" @current-change="pageChange('pagenum', $event)"
@@ -44,14 +45,14 @@ export default {
   components: { ComSearch, ComTable, ComAdvancedQuery },
   data() {
     return {
+      tableHeight: 0, // 表格高度
       scrollTop: 0
     }
   },
   created() {
+    this._countHeight()
     /** 请求：指标 **/
     this.$store.dispatch('A_getCode')
-    /** 请求：数据 **/
-    // this.$store.dispatch('A_getData')
   },
   computed: {
     ...mapState(['tableSignArr', 'pagenum', 'rownum', 'pageCount']),
@@ -64,10 +65,11 @@ export default {
      * @param {[Int]}    val  属性值
      */
     pageChange(name, val) {
-      /* 重置：合计 */
-      // this.$store.commit('saveData', { name: 'countData', obj: {} })
       /** 保存数据 **/
       this.$store.commit('saveData', { name, obj: val })
+      if (name === 'rownum') {
+        this.$store.commit('saveData', { name: 'pagenum', obj: 1 })
+      }
       /** 查询 / 导出 **/
       this.$store.dispatch('search', { operationType: 'search', isLoading: true })
     },
@@ -89,6 +91,27 @@ export default {
         // console.log(' ---------- 999 ---------- ')
       }
       // console.log('页面滚动事件 ----- ', event.target.scrollTop)
+    },
+    /**
+     * [计算：表格高度]
+     */
+    _countHeight() {
+      const that = this
+      let i = 0
+      const timer = setInterval(function () {
+        if (Object.keys(that.$refs).length) {
+          const { page, search, pagination } = that.$refs
+          if (page.clientHeight && search.clientHeight && pagination.clientHeight) {
+            const num = page.clientHeight - search.clientHeight - pagination.clientHeight - 10
+            that.tableHeight = num
+            clearInterval(timer)
+          }
+        }
+        if (i > 100) {
+          clearInterval(timer)
+        }
+        i++
+      }, 100)
     },
     /**
      * [兼容IE11：数组includes]
@@ -121,7 +144,6 @@ export default {
 /*** 表格模块 ***/
 .ComTable {
   width: 100%;
-  margin-top: 5px;
   border-top: 1px solid #EBEEF5;
   border-bottom: 1px solid #EBEEF5;
   flex: 1;

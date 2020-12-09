@@ -33,7 +33,7 @@ obj.tableRow = function (item, data, index) {
   const returnList = [] //                                                                           返回的数据
   for (const x in data) {
     const val = data[x] // 选中的大类： x = badorder_info, val = ['bad_bearer_type', 'bad_bearer_name']
-    if (item[x] === null) {
+    if (item[x] === null || !item[x]) {
       /* 不存在 */
     } else if (item[x].length) {
       /* 抽取数据：数组 */

@@ -156,7 +156,7 @@ const store = new Vuex.Store({
       /* 发送请求 */
       const name = '指标'
       const suc = function (res) {
-        // console.log('指标 ----- ', res)
+        console.log('指标 ----- ', res)
         loadingInstance.close()
         const arr = []
         res.forEach(function (item) {

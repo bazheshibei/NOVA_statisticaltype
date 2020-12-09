@@ -2,125 +2,51 @@
 <!-- 表格模块 -->
 
 <template>
-  <div class="tableBox" ref="box" v-loading="isLoading" element-loading-text="请求数据中">
-    <div class="tableBox2">
+  <div class="tableBox">
+<!-- {{searchLabel}} -->
+    <el-table class="comTable" v-loading="isLoading" element-loading-text="请求数据中"
+      :data="tableData" :height="tableHeight" size="mini" border :show-summary="true" :summary-method="summaryMethod"
+      :row-style="rowStyle" :cell-style="cellStyle" :header-cell-style="headerStyle" :span-method="objectSpanMethod"
+    >
+      <el-table-column prop="custom_name" label="客户名称" fixed></el-table-column>
+      <el-table-column prop="dress_type_name" label="服装品类" fixed></el-table-column>
+      <el-table-column prop="custom_dress_series_name" label="系列名称" fixed></el-table-column>
+      <el-table-column prop="style_name" label="款式名称" fixed></el-table-column>
+      <el-table-column prop="dh_item_name" label="大货项目名称" fixed></el-table-column>
 
-      <!-- 表格：表头 -->
-      <el-table ref="table_1" class="totalTable_1" :data="[]" size="mini" border :style="topBottomStyle"
-        :row-style="rowStyle" :cell-style="cellStyle" :header-cell-style="headerStyle" :span-method="objectSpanMethod"
-      >
-        <el-table-column prop="custom_name" label="客户名称" :resizable="false" fixed></el-table-column>
-        <el-table-column prop="dress_type_name" label="服装品类" :resizable="false" fixed></el-table-column>
-        <el-table-column prop="custom_dress_series_name" label="系列名称" :resizable="false" fixed></el-table-column>
-        <el-table-column prop="style_name" label="款式名称" :resizable="false" fixed></el-table-column>
-        <el-table-column prop="dh_item_name" label="大货项目名称" :resizable="false" fixed></el-table-column>
-        <div v-for="(item, index) in selectArr" :key="'_' + item.word">
-          <div v-for="(val, key) in item.options[1].options" :key="val.label"
-             v-if="arrIncludes(val.label, searchLabel[item.word])"
-          >
-            <el-table-column :label="val.label" min-width="100" :resizable="false"
-              :column-key="index + '^' + item.columnKey + '^' + item.word + '^' + val.value"
-            >
-              <template slot="header" slot-scope="scope">
-                <el-popover placement="top" width="250" trigger="click">
-                  <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.value]" placeholder="多个查询空格分隔" @clear="clear(val.value)" @change="change(val.value, $event, item.word)"></el-input>
-                  <div class="thText" :class="searchObj[val.value] ? 'thActive' : ''" slot="reference" @click="tableHeaderClick(index, key)">
-                    {{val.label}}<span><i class="el-icon-search"></i></span>
-                  </div>
-                </el-popover>
-              </template>
-              <template slot-scope="scope">
-                <div class="ComTableCell">
-                  <span>{{scope.row[val.value]}}</span>
-                </div>
-              </template>
-            </el-table-column>
-          </div>
-        </div>
-      </el-table>
-      <!-- /表格：表头 -->
-
-      <div ref="table_2_box" class="scrollBox_2" :style="contentStyle">
-        <!-- 表格：内容 -->
-        <el-table ref="table_2" class="totalTable_2" :data="tableData" size="mini" border
-          :row-style="rowStyle" :cell-style="cellStyle" :header-cell-style="headerStyle" :span-method="objectSpanMethod"
+      <div v-for="(item, index) in selectArr" :key="item.word">
+        <!-- 展示选中的表头 -->
+        <div v-for="(val, key) in item.options[1].options" :key="val.label"
+           v-if="arrIncludes(val.label, searchLabel[item.word])"
         >
-          <el-table-column prop="custom_name" label="客户名称" fixed></el-table-column>
-          <el-table-column prop="dress_type_name" label="服装品类" fixed></el-table-column>
-          <el-table-column prop="custom_dress_series_name" label="系列名称" fixed></el-table-column>
-          <el-table-column prop="style_name" label="款式名称" fixed></el-table-column>
-          <el-table-column prop="dh_item_name" label="大货项目名称" fixed></el-table-column>
-
-          <div v-for="(item, index) in selectArr" :key="item.word">
-            <!-- 展示选中的表头 -->
-            <div v-for="(val, key) in item.options[1].options" :key="val.label"
-               v-if="arrIncludes(val.label, searchLabel[item.word])"
-            >
-              <el-table-column :label="val.label" min-width="100"
-                :column-key="index + '^' + item.columnKey + '^' + item.word + '^' + val.value"
-              >
-                <template slot="header" slot-scope="scope">
-                  <el-popover placement="top" width="250" trigger="click">
-                    <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.value]" placeholder="多个查询空格分隔" @clear="clear(val.value)" @change="change(val.value, $event, item.word)"></el-input>
-                    <div class="thText" :class="searchObj[val.value] ? 'thActive' : ''" slot="reference" @click="tableHeaderClick(index, key)">
-                      {{val.label}}<span>&nbsp;<i class="el-icon-search"></i></span>
-                    </div>
-                  </el-popover>
-                </template>
-                <template slot-scope="scope">
-                  <div class="ComTableCell">
-                    <span>{{scope.row[val.value]}}</span>
-                  </div>
-                </template>
-              </el-table-column>
-            </div>
-          </div>
-        </el-table>
-        <!-- /表格：内容 -->
-      </div>
-
-      <!-- 表格：合计 -->
-      <el-table ref="table_3" class="totalTable_3" :data="tableData" size="mini" border show-summary :summary-method="getSummaries" :style="topBottomStyle">
-        <el-table-column prop="custom_name" label="客户名称" fixed></el-table-column>
-        <el-table-column prop="dress_type_name" label="服装品类" fixed></el-table-column>
-        <el-table-column prop="custom_dress_series_name" label="系列名称" fixed></el-table-column>
-        <el-table-column prop="style_name" label="款式名称" fixed></el-table-column>
-        <div v-for="(item, index) in selectArr" :key="item.word">
-          <div v-for="(val, key) in item.options[1].options" :key="val.label"
-             v-if="arrIncludes(val.label, searchLabel[item.word])"
+          <el-table-column :label="val.label" min-width="100"
+            :column-key="index + '^' + item.columnKey + '^' + item.word + '^' + val.value"
           >
-            <el-table-column :label="val.label" min-width="100"
-              :column-key="index + '^' + item.columnKey + '^' + item.word + '^' + val.value"
-            >
-              <template slot="header" slot-scope="scope">
-                <el-popover placement="top" width="250" trigger="click">
-                  <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.value]" placeholder="多个查询空格分隔" @clear="clear(val.value)" @change="change(val.value, $event, item.word)"></el-input>
-                  <div class="thText" :class="searchObj[val.value] ? 'thActive' : ''" slot="reference" @click="tableHeaderClick(index, key)">
-                    {{val.label}}<span>&nbsp;<i class="el-icon-search"></i></span>
-                  </div>
-                </el-popover>
-              </template>
-              <template slot-scope="scope">
-                <div class="ComTableCell">
-                  <span>{{scope.row[val.value]}}</span>
+            <template slot="header" slot-scope="scope">
+              <el-popover placement="top" width="250" trigger="click">
+                <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.value]" placeholder="多个查询空格分隔" @clear="clear(val.value)" @change="change(val.value, $event, item.word)"></el-input>
+                <div class="thText" :class="searchObj[val.value] ? 'thActive' : ''" slot="reference" @click="tableHeaderClick(index, key)">
+                  {{val.label}}<span>&nbsp;<i class="el-icon-search"></i></span>
                 </div>
-              </template>
-            </el-table-column>
-          </div>
+              </el-popover>
+            </template>
+            <template slot-scope="scope">
+              <div class="ComTableCell">
+                <span>{{scope.row[val.value]}}</span>
+              </div>
+            </template>
+          </el-table-column>
         </div>
-      </el-table>
-      <!-- /表格：合计 -->
+      </div>
+    </el-table>
 
-      <span style="display: none;">{{is_A_search}}</span>
-
-    </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 export default {
-  created() {},
+  props: ['tableHeight'],
   data() {
     return {
       topBottomStyle: {}, // 表头、合计样式
@@ -131,38 +57,6 @@ export default {
   },
   computed: {
     ...mapState(['pagenum', 'rownum', 'pageCount', 'countData', 'isLoading', 'colorArr']),
-    ...mapState({
-      is_A_search(state) {
-        const that = this
-        /* 高度：表格内容 */
-        let i = 0
-        const timer = setInterval(function () {
-          if (that.$refs.table_1 && that.$refs.box) {
-            if (!that.contentStyle.height && that.$refs.table_1.$el) {
-              const boxHeight = that.$refs.box.clientHeight
-              const table_1_height = that.$refs.table_1.$el.clientHeight
-              const table_3_height = 26
-              const num = boxHeight - table_1_height - table_3_height
-              that.contentStyle = { height: `${num}px` }
-              clearInterval(timer)
-            }
-          } else {
-            if (i > 500) {
-              clearInterval(timer)
-            }
-          }
-          i++
-        }, 10)
-        /* 宽度：是否出现下拉滚动条 */
-        if (that.$refs.table_2_box && that.$refs.table_2 && that.$refs.table_2.$el) {
-          setTimeout(function () {
-            const width = that.$refs.table_2_box.clientWidth
-            that.topBottomStyle = { width: `${width}px` }
-          }, 100)
-        }
-        return state.is_A_search
-      }
-    }),
     ...mapGetters(['tableData']),
     /**
      * [下拉框数据]
@@ -170,7 +64,7 @@ export default {
     selectArr() {
       const arr = this.$store.state.selectArr
       if (arr.length) {
-        // console.log('arr ----- ', arr)
+        console.log('arr ----- ', arr)
         return arr
       } else {
         return []
@@ -247,6 +141,28 @@ export default {
       this.$store.dispatch('A_count')
     },
     /**
+     * [合计内容]
+     */
+    summaryMethod({ columns, data }) {
+      const { countData } = this
+      const arr = []
+      columns.forEach(function (item, index) {
+        if (index === 0) {
+          arr.push('合计')
+        } else if (item.columnKey && item.columnKey.length > 6) {
+          const [, , word, value] = item.columnKey.split('^')
+          if (countData[word]) {
+            arr.push(countData[word][value])
+          } else {
+            arr.push('')
+          }
+        } else {
+          arr.push('')
+        }
+      })
+      return arr
+    },
+    /**
      * [合并：表格单元格]
      */
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
@@ -309,60 +225,25 @@ export default {
 </script>
 
 <style scoped>
-/*** 表格滚动条，移动到div ***/
 .tableBox {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  position: relative;
 }
-.tableBox2 {
-  width: max-content;
-  height: 100%;
-}
-.scrollBox_2 {
-  width: auto;
-  height: auto;
-  overflow-y: auto;
-  flex: 1;
+.comTable {
+  border: 0;
 }
 </style>
 
 <style>
-/*** 表格：表头 ***/
-.totalTable_1 > .el-table__body-wrapper {
-  /* 隐藏内容 */
-  display: none !important;
+.comTable::before, .comTable::after {
+  height: 0 !important;
 }
-.totalTable_1 > .el-table__fixed > .el-table__fixed-body-wrapper {
-  display: none !important;
+.el-table__fixed::before, .el-table__fixed::after {
+  height: 0 !important;
 }
-
-/*** 表格：内容 ***/
-.totalTable_2 {
-  flex: 1 !important;
-}
-.totalTable_2 > .el-table__header-wrapper {
-  /* 隐藏表头：自定义项 */
-  display: none !important;
-}
-.totalTable_2 > .el-table__fixed > .el-table__fixed-header-wrapper {
-  /* 隐藏表头：fixed项 */
-  display: none !important;
-}
-
-/*** 表格：合计 ***/
-.totalTable_3 {
-  border-bottom: 0;
-}
-.totalTable_3 > .el-table__footer-wrapper, .totalTable_3 > .el-table__fixed {
-  height: 25px !important;
-}
-.totalTable_3 > .el-table__body-wrapper {
-  /* 隐藏内容 */
-  display: none !important;
-}
-.totalTable_3 > .el-table__header-wrapper {
-  /* 隐藏表头：自定义项 */
-  display: none !important;
+.comTable > .el-table__footer-wrapper {
+  position: absolute;
+  bottom: 0;
 }
 </style>
