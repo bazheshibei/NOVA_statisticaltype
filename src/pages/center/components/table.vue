@@ -205,14 +205,14 @@ export default {
   height: 0 !important;
 }
 .comTable > .el-table__footer-wrapper { /* 滚动部分：合计行定位到底部 */
-  position: absolute;
-  bottom: 0;
+  position: absolute !important;
+  bottom: 0 !important;
 }
 .el-table td, .el-table th { /* 单元格内文字顶部对齐 */
   vertical-align: top !important;
 }
 .el-table thead {
-  color: #303133;
+  color: #303133 !important;
 }
 
 /* 最后一行 padding，防止合计行遮挡[固定部分、滚动部分] */
