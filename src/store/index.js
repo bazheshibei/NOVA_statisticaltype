@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 
   state: {
-    nowCodeType: 'Dev', //     当前代码类型
+    nowCodeType: 'Prod', //     当前代码类型
     codeObj: { Dev, Prod }, // 代码类型 { Dev: '开发', Prod: '生产' }
     /* 静态数据 */
     colorArr: ['#ff0000', '#ffc000', '#92d050', '#00b0f0', '#8064a2', '#76933c', '#e26b0a', '#558ed5', '#963634'],
