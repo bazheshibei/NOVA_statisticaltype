@@ -1,62 +1,54 @@
 
 <!-- 搜索模块 -->
-
 <template>
   <el-collapse-transition>
 
     <div class="transitionBox" :style="!isShow ? 'min-height: 30px' : ''">
-      <div class="iBox" @click="isShow = !isShow">
+      <!-- 折叠按钮 -->
+      <div class="iBox" @click="isShowContent">
         <i class="el-icon-arrow-up" v-show="isShow"></i>
         <i class="el-icon-arrow-down" v-show="!isShow"></i>
       </div>
 
       <div class="comBox" v-show="isShow">
-        <el-popover placement="bottom" width="930" v-for="(item, index) in selectArr" :key="'searchBox_' + index">
-          <!-- 内部 -->
-          <div v-for="(group, groupKey) in item.options" :key="group.label">
-            <div class="checkboxBox" :class="!groupKey ? 'checkboxBoxActive' : ''" v-if="!groupKey">
-              <el-checkbox-button class="comCheckboxButton" v-model="pageData[item.word][val.value]"
-                v-for="(val, key) in group.options" :key="'options_' + key" :label="val.label" @change="checkboxChange(item.word, val.value, index, $event)"
-              ></el-checkbox-button>
-            </div>
-            <div class="checkboxBox" v-else>
-              <el-checkbox class="comCheckbox" size="mini" v-model="pageData[item.word][val.value]"
-                v-for="(val, key) in group.options" :key="'options_' + key" :label="val.label" @change="checkboxChange(item.word, val.value, index, $event)"
-              ></el-checkbox>
-            </div>
-          </div>
+
+        <!-- select 选择器 -->
+        <el-popover placement="bottom" v-for="(item, index) in selectArr" :key="'searchBox_' + index">
           <!-- 外部 -->
           <div class="searchBox" slot="reference">
-            <div class="searchName"
-              :style="(item.id !== '402888f371ba89940171ba901d1b0000' && item.id !== '402888f371ba89940171ba91a3590001' && item.id !== '402888f371ba89940171ba91f1660002' && item.id !== '402888f371ba89940171ba94a9e80007' && item.id !== deleteType && deleteType !== 'asd') ? 'text-decoration: line-through;' : ''"
-            >
-              <i class="el-icon-s-help" :style="{ color: colorArr[index % 9] }"></i>{{item.name}}：
+            <div class="searchName" :style="_isStyle(item.id) ? 'text-decoration: line-through;' : ''">
+              <i class="el-icon-s-help" :style="{ color: colorArr[index % 9] }"></i>{{item.label}}：
             </div>
-            <el-input size="mini" suffix-icon="el-icon-arrow-down" placeholder="请选择"
-              :value="searchLabel[item.word] ? searchLabel[item.word].join('、') : ''"
-            >
-            </el-input>
+            <el-input size="mini" suffix-icon="el-icon-arrow-down" placeholder="请选择" :value="selectShowText[index]"></el-input>
           </div>
+          <!-- 内部 -->
+          <com-tree :list="item.children" :selectIndex="index" @comTreeSubmit="comTreeSubmit"></com-tree>
         </el-popover>
 
+        <!-- 项目名称 -->
         <div class="searchBox">
           <div class="searchName">项目名称：</div>
-          <el-input size="mini" v-model="inputVal" placeholder="多个查询空格分隔" :disabled="!isChoose3" @input="input"></el-input>
+          <el-input class="nameInput" size="mini" v-model="projectName" placeholder="多个查询空格分隔" :disabled="!isChoose3" @input="inputProjectName"></el-input>
         </div>
 
+        <!-- 按钮组 -->
         <div class="searchBtnBox">
+          <!-- 查询禁用：不能搜索 || 没选大类 -->
           <el-button type="primary" size="mini" :plain="!isSearch" :disabled="!is_A_search || !isChooseSelect" @click="submit({ operationType: 'search' })">
             查询 <i class="el-icon-search"></i>
           </el-button>
+          <!-- 高级查询禁用：不能搜索 || 没选大类 -->
           <el-button type="primary" size="mini" :plain="!isSearch" :disabled="!is_A_search || !isChooseSelect" @click="showAdvancedQuery">
             高级查询 <i class="el-icon-s-tools"></i>
           </el-button>
           <el-button type="primary" size="mini" plain @click="reset">
             重置 <i class="el-icon-refresh"></i>
           </el-button>
+          <!-- 合计禁用：不能合计 || 没选大类 -->
           <el-button type="warning" size="mini" plain :disabled="!is_A_count || !isChooseSelect" @click="clickCount">
             合计 <i class="el-icon-s-data" v-if="is_A_count"></i><i class="el-icon-loading" v-else></i>
           </el-button>
+          <!-- 导出禁用：没选大类 -->
           <el-button type="success" size="mini" plain :disabled="!isChooseSelect" @click="submit({ operationType: 'export' })">
             导出 <i class="el-icon-download" v-if="is_A_export"></i><i class="el-icon-loading" v-else></i>
           </el-button>
@@ -70,57 +62,47 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import Tool from '@/store/tool.js'
+import ComTree from './comTree.vue'
 export default {
+  components: { ComTree },
   data() {
     return {
-      pageData: {}, // 页面数据
-      isShow: true, // 是否展示
-      inputVal: '' //  input输入值
+      isShow: true, //       是否显示搜索条件
+      selectShowText: [], // select 展示的文字
+      selectNodeObj: {}, //  select 选中的节点对象
+      projectName: '' //     项目名称
     }
   },
   created() {
     /* 提取上次的数据 */
-    const searchVal = JSON.parse(localStorage.getItem('NOVA_total_searchVal')) || {}
-    const searchLabel = JSON.parse(localStorage.getItem('NOVA_total_searchLabel')) || {}
-    const searchText = localStorage.getItem('NOVA_total_searchText') || ''
-    const exportSelect = JSON.parse(localStorage.getItem('NOVA_total_exportSelect')) || {}
-    /** 保存数据 **/
+    const selectNodeObj = JSON.parse(localStorage.getItem('NOVA_total_selectNodeObj')) || {} //   select 选中的节点对象 [通过 Tool.returnSearchData() 生成 searchData, searchVal, searchLabel]
+    const selectShowText = JSON.parse(localStorage.getItem('NOVA_total_selectShowText')) || [] // select 展示的文字
+    const searchText = localStorage.getItem('NOVA_total_searchText') || '' //                     项目名称
+    const { searchData, searchVal, searchLabel } = Tool.returnSearchData(selectNodeObj)
+    this.$store.commit('saveData', { name: 'selectNodeObj', obj: selectNodeObj })
+    this.$store.commit('saveData', { name: 'selectShowText', obj: selectShowText })
+    this.$store.commit('saveData', { name: 'searchData', obj: searchData })
     this.$store.commit('saveData', { name: 'searchVal', obj: searchVal })
     this.$store.commit('saveData', { name: 'searchLabel', obj: searchLabel })
     this.$store.commit('saveData', { name: 'searchText', obj: searchText })
-    this.$store.commit('saveData', { name: 'exportSelect', obj: exportSelect })
     /* 赋值 */
-    this.inputVal = searchText
+    this.selectNodeObj = selectNodeObj
+    this.selectShowText = selectShowText
+    this.projectName = searchText
   },
   computed: {
-    /* ['选中：大类', '选中：表头名称', '搜索：input'] */
-    ...mapState(['searchVal', 'searchLabel', 'searchText', 'is_A_search', 'is_A_export', 'is_A_count', 'is_request_count', 'colorArr']),
-    ...mapState({
-      /** 下拉框数据 **/
-      selectArr(state) {
-        const that = this
-        const pageData = {}
-        const { selectArr } = state
-        selectArr.forEach(function (item) {
-          pageData[item.word] = { '-1': false, '-2': false, '-3': false }
-          if (item.options) {
-            item.options[1].options.forEach(function (val) {
-              if (that.arrIncludes(val.value, state.searchVal[item.word])) {
-                pageData[item.word][val.value] = true
-              } else {
-                pageData[item.word][val.value] = false
-              }
-            })
-          }
-        })
-        this.pageData = pageData
-        return selectArr
-      }
-    }),
-    /* 是否需要：搜索, 删除线指标 */
-    ...mapGetters(['isSearch', 'deleteType', 'changeSelect', 'isSearch', 'isChooseSelect', 'isChoose3'])
+    ...mapState(['selectArr', 'is_A_search', 'is_A_export', 'is_A_count', 'colorArr']),
+    ...mapGetters(['isSearch', 'deleteType', 'isChooseSelect', 'isChoose3'])
   },
   methods: {
+    /**
+     * [切换：显示搜索条件]
+     */
+    isShowContent() {
+      this.isShow = !this.isShow
+      this.$emit('recount')
+    },
     /**
      * [显示：高级查询]
      */
@@ -128,80 +110,37 @@ export default {
       this.$store.commit('saveData', { name: 'isDialog', obj: true })
     },
     /**
-     * [复选框改变值]
-     * @param {[String]}  word  大类名
-     * @param {[String]}  value 当前值
-     * @param {[Int]}     index 大类索引
-     * @param {[Boolean]} event 事件返回值 true || false
+     * [树形组件：提交选中值]
+     * @param {[Object]} params 选中值：{ index: 0, data: { 1: {} } } ==> { index: select索引, data: { 排序: 指标全部属性值 } }
      */
-    checkboxChange(word, value, index, event) {
-      const { pageData } = this
-      const options = this.selectArr[index].options[1].options // 当前下拉框：全部选项
-      const val = [] //          选中：大类
-      const label = [] //        选中：表头名称
-      const exportSelect = [] // 导出用到的，下拉选项数据
-      if (value === '-1') {
-        /* 全选 */
-        for (const x in pageData[word]) {
-          pageData[word][x] = true
-        }
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-          val.push(item.value) //   值
-          label.push(item.label) // 属性名
-        }
-      } else if (value === '-2') {
-        /* 反选 */
-        for (const x in pageData[word]) {
-          pageData[word][x] = !pageData[word][x]
-        }
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          if (pageData[word][item.value] || item.is_default_select) {
-            pageData[word][item.value] = true
-            exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-            val.push(item.value) //   值
-            label.push(item.label) // 属性名
-          }
-        }
-        this.pageData = pageData
-      } else if (value === '-3') {
-        /* 全不选 */
-        for (const x in pageData[word]) {
-          pageData[word][x] = false
-        }
-      } else {
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          if (pageData[word][item.value] || item.is_default_select) {
-            pageData[word][item.value] = true
-            exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-            val.push(item.value) //   值
-            label.push(item.label) // 属性名
-          }
-        }
+    comTreeSubmit(params = {}) {
+      // console.log('树形组件：提交选中值 ----- ', params)
+      const { index, data = {} } = params
+      /* ----- select 展示的文字 ----- */
+      const { selectShowText } = this
+      const selectShowTextArr = []
+      for (const x in data) {
+        selectShowTextArr.push(data[x].label)
       }
-      /* 保存数据 */
-      this.$store.commit('assignData', { name: 'exportSelect', obj: { [word]: exportSelect } })
-      this.$store.commit('assignData', { name: 'searchVal', obj: { [word]: val } })
-      this.$store.commit('assignData', { name: 'searchLabel', obj: { [word]: label } })
-      /* (大类变化 && 不需要手动搜索) -> 自动请求 */
-      const { changeSelect, isSearch, is_request_count } = this
-      if (changeSelect && !isSearch) {
-        /** 查询 / 导出 **/
-        this.submit({ isLoading: false })
-        /* 请求过合计的话，跟着请求合计 */
-        if (is_request_count) {
-          /** 请求：合计 **/
-          this.$store.dispatch('A_count')
-        }
-      }
+      const selectShowTextJoin = selectShowTextArr.join('、')
+      selectShowText[index] = selectShowTextJoin
+      this.selectShowText.splice(index, 1, selectShowTextJoin)
+      /* ----- select 选中的指标对象 ----- */
+      const { selectNodeObj } = this
+      selectNodeObj[index] = Object.assign({}, data)
+      this.selectNodeObj = Object.assign({}, selectNodeObj)
+      /* ----- 提取：选中的指标数据 ----- */
+      const { searchData, searchVal, searchLabel } = Tool.returnSearchData(selectNodeObj)
+      this.$store.commit('saveData', { name: 'selectNodeObj', obj: selectNodeObj })
+      this.$store.commit('saveData', { name: 'selectShowText', obj: selectShowText })
+      this.$store.commit('saveData', { name: 'searchData', obj: searchData })
+      this.$store.commit('saveData', { name: 'searchVal', obj: searchVal })
+      this.$store.commit('saveData', { name: 'searchLabel', obj: searchLabel })
     },
     /**
      * [项目名称：输入搜索文字]
      */
-    input(event) {
+    inputProjectName(event) {
       this.$store.commit('saveData', { name: 'searchText', obj: event })
     },
     /**
@@ -225,110 +164,47 @@ export default {
      * [重置]
      */
     reset() {
-      this.$store.commit('saveData', { name: 'searchVal', obj: {} })
-      this.$store.commit('saveData', { name: 'searchLabel', obj: {} })
-      this.$store.commit('saveData', { name: 'searchText', obj: '' })
-
-      // this.$store.commit('saveData', { name: 'searchHeader', obj: {} })
+      const { selectArr } = this
+      const arr = Tool.resetSelectArr(selectArr)
+      /* 接口返回 */
+      this.$store.commit('saveData', { name: 'selectArr', obj: arr }) //     整理后的指标数组
+      this.$store.commit('saveData', { name: 'dataList', obj: [] }) //       表格数据
+      /* 页面操作 */
+      this.$store.commit('saveData', { name: 'searchText', obj: '' }) //     搜索：input
+      this.$store.commit('saveData', { name: 'searchHeader', obj: {} }) //   搜索：表头
+      /* 整理页面获取的数据 */
+      this.$store.commit('saveData', { name: 'selectNodeObj', obj: {} }) //  select 选中的节点对象 [通过 Tool.returnSearchData() 生成 searchData, searchVal, searchLabel]
+      this.$store.commit('saveData', { name: 'selectShowText', obj: [] }) // select 展示的文字
+      this.$store.commit('saveData', { name: 'searchData', obj: {} }) //     select 选中的指标数据
+      this.$store.commit('saveData', { name: 'searchVal', obj: {} }) //      选中：大类 { dh_relate: ['dh_item_name'] }
+      this.$store.commit('saveData', { name: 'searchLabel', obj: {} }) //    选中：表头名称 { dh_relate: ['项目名称'] }
+      /* 高级查询 */
+      this.$store.commit('saveData', { name: 'advancedQuery', obj: [] }) //  查询条件
+      /* 合计 */
+      this.$store.commit('saveData', { name: 'countData', obj: {} }) //      合计
+      /* 分页 */
+      this.$store.commit('saveData', { name: 'pagenum', obj: 1 }) //         页数
+      this.$store.commit('saveData', { name: 'rownum', obj: 10 }) //         每页条数
+      this.$store.commit('saveData', { name: 'pageCount', obj: 0 }) //       总条数
+      /* 本页 */
+      this.selectShowText = [] // select 展示的文字
+      this.selectNodeObj = {} //  select 选中的节点对象
+      this.projectName = '' //     项目名称
     },
     /**
-     * [下拉框改变值]
-     * @param {[String]} word  属性名
-     * @param {[Array]}  event 事件返回值
-     * @param {[Int]}    index 组件索引
+     * [是否：显示管穿线]
+     * @param {[String]} id 大类ID
      */
-    selectChange(word, event, index) {
-      const options = this.selectArr[index].options[1].options // 当前下拉框：全部选项
-      if (this.arrIncludes(-1, event)) {
-        /* 全选 */
-        const val = []
-        const label = []
-        const exportSelect = []
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-          val.push(item.value) //   值
-          label.push(item.label) // 属性名
-        }
-        this.$store.commit('assignData', { name: 'exportSelect', obj: { [word]: exportSelect } })
-        this.$store.commit('assignData', { name: 'searchVal', obj: { [word]: val } })
-        this.$store.commit('assignData', { name: 'searchLabel', obj: { [word]: label } })
-        this.selectBlur(index) // 下拉框失焦
-      } else if (this.arrIncludes(-2, event)) {
-        /* 反选 */
-        const selectArr = this.searchVal[word] // 数组：选中的值
-        const arr = []
-        const label = []
-        const exportSelect = []
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          if (!this.arrIncludes(item.value, selectArr)) {
-            exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-            arr.push(item.value) //   值
-            label.push(item.label) // 属性名
-          }
-        }
-        this.$store.commit('assignData', { name: 'exportSelect', obj: { [word]: exportSelect } })
-        this.$store.commit('assignData', { name: 'searchVal', obj: { [word]: arr } })
-        this.$store.commit('assignData', { name: 'searchLabel', obj: { [word]: label } })
-        this.selectBlur(index) // 下拉框失焦
-      } else if (this.arrIncludes(-3, event)) {
-        /* 全不选 */
-        this.$store.commit('assignData', { name: 'exportSelect', obj: { [word]: [] } })
-        this.$store.commit('assignData', { name: 'searchVal', obj: { [word]: [] } })
-        this.$store.commit('assignData', { name: 'searchLabel', obj: { [word]: [] } })
-        this.selectBlur(index) // 下拉框失焦
-      } else {
-        /* 点击选项 */
-        const label = []
-        const exportSelect = []
-        for (let i = 0; i < options.length; i++) {
-          const item = options[i]
-          if ( this.arrIncludes(item.value, event) || item.is_default_select) {
-            exportSelect.push({ statistics_field_name: item.value, statistics_remark: item.label })
-            label.push(item.label)
-          }
-        }
-        this.$store.commit('assignData', { name: 'exportSelect', obj: { [word]: exportSelect } })
-        this.$store.commit('assignData', { name: 'searchLabel', obj: { [word]: label } })
-      }
-      /* (大类变化 && 不需要手动搜索) -> 自动请求 */
-      const { changeSelect, isSearch, is_request_count } = this
-      if (changeSelect && !isSearch) {
-        /** 查询 / 导出 **/
-        this.submit({ isLoading: false })
-        /* 请求过合计的话，跟着请求合计 */
-        if (is_request_count) {
-          /** 请求：合计 **/
-          this.$store.dispatch('A_count')
-        }
-      }
-    },
-    /**
-     * [下拉框失焦]
-     * @param {[Int]} index 组件索引
-     */
-    selectBlur(index) {
-      const that = this
-      setTimeout(function () {
-        that.$refs.select[index].blur()
-      }, 0)
-    },
-    /**
-     * [兼容IE11：数组includes]
-     * @param  {[String]}  str 关键字
-     * @param  {[Array]}   arr 数组
-     * @return {[Boolean]}     true || false
-     */
-    arrIncludes(str, arr = []) {
-      let status = false
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === str) {
-          status = true
-        }
-      }
-      return status
+    _isStyle(id) {
+      const { deleteType } = this
+      const prove_1 = id !== '402888f371ba89940171ba901d1b0000' // 大货相关
+      const prove_2 = id !== '402888f371ba89940171ba91a3590001' // 开发相关
+      const prove_3 = id !== '402888f371ba89940171ba91f1660002' // 设计相关
+      const prove_4 = id !== '402888f371ba89940171ba94a9e80007' // 客户订单相关
+      const prove_5 = id !== deleteType && deleteType //           !== 第一个会冲突的大类ID
+      return prove_1 && prove_2 && prove_3 && prove_4 && prove_5
     }
+    //
   }
 }
 </script>
@@ -382,38 +258,13 @@ export default {
 </style>
 
 <style>
-/*** 复选框 ***/
-.checkboxBox {
-  max-height: 550px !important;
-  padding: 0 10px !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
+/*** 弹出框 ***/
+.el-popover {
+  max-width: 930px !important;
+  max-height: 400px !important;
+  overflow: auto !important;
 }
-.checkboxBoxActive {
-  padding: 6px 10px !important;
-  background: #f5f7fa !important;
-}
-.comCheckbox {
-  width: 120px !important;
-  font-size: 12px !important;
-  margin: 2px 10px 2px 0 !important;
-  display: flex !important;
-  align-items: flex-start !important;
-}
-.comCheckbox > .el-checkbox__label {
-  font-size: 12px !important;
-  font-weight: normal !important;
-  white-space: normal !important;
-  text-align: left !important;
-}
-.el-checkbox__input.is-checked+.el-checkbox__label { /* 选中项：文字 */
-  color: #606266 !important;
-  font-weight: normal !important;
-}
-.comCheckboxButton > .el-checkbox-button__inner {
-  font-size: 12px !important;
-  font-weight: normal !important;
-  padding: 7px 15px !important;
+.el-popover > .popper__arrow {
+  display: none !important;
 }
 </style>

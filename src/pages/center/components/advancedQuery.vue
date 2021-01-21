@@ -10,12 +10,12 @@
     <div class="comContentBox" :style="styleObj">
       <div class="lineBox" v-for="(item, index) in submitVal" :key="'line_' + index">
         <!-- 大类 -->
-        <el-select class="com_1" size="mini" v-model="submitVal[index].typecode" @change="selectChange(index)">
-          <el-option v-for="item in selectObj" :key="'cate_' + item.id" :label="item.name" :value="item.word"></el-option>
+        <el-select class="com_1" size="mini" v-model="submitVal[index].typecode" @change="_proving(index, 1)">
+          <el-option v-for="item in selectObj" :key="'cate_' + item.id" :label="item.label" :value="item.code"></el-option>
         </el-select>
         <!-- 指标 -->
-        <el-select class="com_2" filterable size="mini" v-model="submitVal[index].indicatorcode" @change="_proving">
-          <el-option v-for="item in selectObj2[submitVal[index].typecode]" :key="'cate_2_' + item.id" :label="item.label" :value="item.value"></el-option>
+        <el-select class="com_2" filterable size="mini" v-model="submitVal[index].indicatorcode" @change="_proving(index, 2)">
+          <el-option v-for="item in selectObj2[submitVal[index].typecode]" :key="'cate_2_' + item.id" :label="item.label" :value="item.code"></el-option>
         </el-select>
         <!-- 限制 -->
         <el-select class="com_3" size="mini" v-model="submitVal[index].searchtype" @change="_proving">
@@ -86,9 +86,8 @@ export default {
         const obj = {}
         selectArr.forEach(function (item) {
           /* 处理一级选项 */
-          obj[item.word] = item
+          obj[item.code] = item
         })
-        // console.log(2222, obj)
         return obj
       }
     }),
@@ -96,12 +95,19 @@ export default {
      * [对象：节点]
      */
     selectObj2() {
-      const { selectObj, submitVal } = this
+      const { selectObj = {}, submitVal = [] } = this
       const obj = {}
-      submitVal.forEach(function (item) {
+      submitVal.forEach((item) => {
         const { typecode = '' } = item
         if (typecode !== '') {
-          obj[typecode] = selectObj[typecode].options[1].options
+          const arr = []
+          selectObj[typecode].children.forEach((val = {}) => {
+            const nodeList = val.children || []
+            nodeList.forEach((node) => {
+              arr.push(node)
+            })
+          })
+          obj[typecode] = arr
         }
       })
       return obj
@@ -112,17 +118,24 @@ export default {
     selectVal() {
       const { selectObj, submitVal } = this
       const obj = {}
-      submitVal.forEach(function (item) {
+      submitVal.forEach((item = {}) => {
         const { typecode = '', indicatorcode = '' } = item
-        if (typecode !== '' && indicatorcode !== '') {
+        if (typecode && indicatorcode) {
           let search_type = '1'
           let enum_value = ''
-          for (let i = 0; i < selectObj[typecode].options[1].options.length; i++) {
-            const option = selectObj[typecode].options[1].options[i]
-            if (option.value === indicatorcode) {
-              search_type = option.search_type
-              enum_value = option.enum_value
-              break
+          for (const x in selectObj) {
+            if (typecode === x) {
+              const data = selectObj[x] || {} // 选中的大类
+              const { children = [] } = data // 大类下的分组
+              children.forEach((val = {}) => {
+                const { children: list = [] } = val // 单个分组下的指标数组
+                list.forEach((node) => {
+                  if (indicatorcode === node.code) {
+                    search_type = node.search_type
+                    enum_value = node.enum_value
+                  }
+                })
+              })
             }
           }
           let arr = []
@@ -139,18 +152,19 @@ export default {
   },
   methods: {
     /**
-     * [切换大类时，重置指标]
-     * @param {[Int]} index 数据索引
-     */
-    selectChange(index) {
-      this.submitVal[index].indicatorcode = ''
-      /** 验证：提取可用数据 **/
-      this._proving()
-    },
-    /**
      * [验证：提取可用数据]
+     * @param {[Int]} index 单个条件索引
+     * @param {[Int]} num   单个条件内组件标识
      */
-    _proving() {
+    _proving(index, num) {
+      /* 重置 */
+      if (num) {
+        if (num === 1) {
+          this.submitVal[index].indicatorcode = ''
+        }
+        this.submitVal[index].searchvalue = ''
+      }
+      /* 验证 */
       const { submitVal } = this
       const arr = []
       submitVal.forEach(function (item) {
@@ -246,5 +260,15 @@ export default {
 <style>
 .comDialog > .el-dialog > .el-dialog__body {
   padding: 10px 20px !important;
+}
+/**
+ * [下拉框 select]
+ */
+/* 单个选项 */
+.el-select-dropdown__item {
+  height: 25px !important;
+  font-size: 12px !important;
+  line-height: 25px !important;
+  padding: 0 10px !important;
 }
 </style>

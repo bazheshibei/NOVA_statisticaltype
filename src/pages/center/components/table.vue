@@ -3,41 +3,57 @@
 
 <template>
   <div class="tableBox">
-<!-- {{searchLabel}} -->
-    <el-table class="comTable" v-loading="isLoading" element-loading-text="请求数据中"
-      :data="tableData" :height="tableHeight" size="mini" border :show-summary="true" :summary-method="summaryMethod"
-      :row-style="rowStyle" :cell-style="cellStyle" :header-cell-style="headerStyle" :span-method="objectSpanMethod"
-    >
-      <el-table-column prop="custom_name" label="客户名称" fixed></el-table-column>
-      <el-table-column prop="dress_type_name" label="服装品类" fixed></el-table-column>
-      <el-table-column prop="custom_dress_series_name" label="系列名称" fixed></el-table-column>
-      <el-table-column prop="style_name" label="款式名称" fixed></el-table-column>
-      <el-table-column prop="dh_item_name" label="大货项目名称" fixed></el-table-column>
 
-      <div v-for="(item, index) in selectArr" :key="item.word">
-        <!-- 展示选中的表头 -->
-        <div v-for="(val, key) in item.options[1].options" :key="val.label"
-           v-if="arrIncludes(val.label, searchLabel[item.word])"
+    <el-table class="comTable" v-loading="isLoading" element-loading-text="请求数据中"
+      :data="tableData" :height="tableHeight" size="mini" border :show-summary="true" :summary-method="_summaryMethod"
+      :row-style="_rowStyle" :cell-style="_cellStyle" :header-cell-style="_headerStyle" :span-method="_objectSpanMethod"
+    >
+      <el-table-column prop="custom_name" fixed>
+        <template slot="header" slot-scope="scope">
+          <div class="thText">客户名称</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="dress_type_name" fixed>
+        <template slot="header" slot-scope="scope">
+          <div class="thText">服装品类</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="custom_dress_series_name" fixed>
+        <template slot="header" slot-scope="scope">
+          <div class="thText">系列名称</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="style_name" fixed>
+        <template slot="header" slot-scope="scope">
+          <div class="thText">款式名称</div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="mr_dh_item_name" fixed>
+        <template slot="header" slot-scope="scope">
+          <div class="thText">大货项目名称</div>
+        </template>
+      </el-table-column>
+
+      <div v-for="(item, index) in searchData" :key="'item_' + index">
+        <el-table-column v-for="(val, key) in item" :key="'val_' + key + '_' + val.code" min-width="100"
+          :column-key="index + '^' + val.columnKey + '^' + val.code_p + '^' + val.code"
         >
-          <el-table-column :label="val.label" min-width="100"
-            :column-key="index + '^' + item.columnKey + '^' + item.word + '^' + val.value"
-          >
-            <template slot="header" slot-scope="scope">
-              <el-popover placement="top" width="250" trigger="click">
-                <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.value]" placeholder="多个查询空格分隔" @clear="clear(val.value)" @change="change(val.value, $event, item.word)"></el-input>
-                <div class="thText" :class="searchObj[val.value] ? 'thActive' : ''" slot="reference" @click="tableHeaderClick(index, key)">
-                  {{val.label}}<span>&nbsp;<i class="el-icon-search"></i></span>
-                </div>
-              </el-popover>
-            </template>
-            <template slot-scope="scope">
-              <div class="ComTableCell">
-                <span>{{scope.row[val.value]}}</span>
+          <template slot="header" slot-scope="scope">
+            <el-popover placement="top" width="250" trigger="click">
+              <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.code]" size="mini" placeholder="多个查询空格分隔" @clear="clear(val.code)" @change="change(val.code, $event, val.code_p)"></el-input>
+              <div class="thText" slot="reference" @click="tableHeaderClick(index, key)">
+                {{val.label}}<span>&nbsp;<i class="el-icon-search" :class="searchObj[val.code] ? 'thActive' : ''"></i></span>
               </div>
-            </template>
-          </el-table-column>
-        </div>
+            </el-popover>
+          </template>
+          <template slot-scope="scope">
+            <div class="ComTableCell">
+              <span v-if="scope.row[val.code]">{{scope.row[val.code]}}</span>
+            </div>
+          </template>
+        </el-table-column>
       </div>
+
     </el-table>
 
   </div>
@@ -49,34 +65,12 @@ export default {
   props: ['tableHeight'],
   data() {
     return {
-      topBottomStyle: {}, // 表头、合计样式
-      contentStyle: {}, //   内容表格高度
-      searchObj: {}, //      表头搜索
-      countObj: {} //       合计
+      searchObj: {} // 表头搜索
     }
   },
   computed: {
-    ...mapState(['pagenum', 'rownum', 'pageCount', 'countData', 'isLoading', 'colorArr']),
-    ...mapGetters(['tableData']),
-    /**
-     * [下拉框数据]
-     */
-    selectArr() {
-      const arr = this.$store.state.selectArr
-      if (arr.length) {
-        console.log('arr ----- ', arr)
-        return arr
-      } else {
-        return []
-      }
-    },
-    /**
-     * [选中的表头名称]
-     */
-    searchLabel() {
-      const obj = this.$store.state.searchLabel || {}
-      return Object.keys(obj) ? obj : {}
-    }
+    ...mapState(['countData', 'isLoading', 'colorArr', 'selectArr', 'searchData']),
+    ...mapGetters(['tableData'])
   },
   methods: {
     /**
@@ -87,31 +81,13 @@ export default {
     tableHeaderClick(index, key) {
       const that = this
       setTimeout(function () {
-        that.$refs[`input_${index}_${key}`][0].focus()
-      }, 100)
-    },
-    /**
-     * [合计]
-     */
-    getSummaries(param) {
-      const { countData } = this
-      const { columns } = param
-      const arr = []
-      columns.forEach(function (item, index) {
-        if (index === 0) {
-          arr.push('合计')
-        } else if (item.columnKey && item.columnKey.length > 6) {
-          const [, , word, value] = item.columnKey.split('^')
-          if (countData[word]) {
-            arr.push(countData[word][value])
-          } else {
-            arr.push('')
-          }
-        } else {
-          arr.push('')
+        const ref = that.$refs[`input_${index}_${key}`]
+        if (ref.length && ref.length === 1) {
+          that.$refs[`input_${index}_${key}`][0].focus()
+        } else if (ref.length && ref.length === 2) {
+          that.$refs[`input_${index}_${key}`][1].focus()
         }
-      })
-      return arr
+      }, 100)
     },
     /**
      * [表头：清空输入框]
@@ -134,16 +110,9 @@ export default {
       this.$store.dispatch('A_getData')
     },
     /**
-     * [合计]
-     */
-    clickCount() {
-      /** 请求：合计 **/
-      this.$store.dispatch('A_count')
-    },
-    /**
      * [合计内容]
      */
-    summaryMethod({ columns, data }) {
+    _summaryMethod({ columns, data }) {
       const { countData } = this
       const arr = []
       columns.forEach(function (item, index) {
@@ -165,7 +134,7 @@ export default {
     /**
      * [合并：表格单元格]
      */
-    objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+    _objectSpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex < 4 || (typeof column.columnKey === 'string' && column.columnKey.split('^')[1] === '1')) {
         if (row.arrLength) {
           return { rowspan: row.arrLength, colspan: 1 } // 合并
@@ -177,7 +146,7 @@ export default {
     /**
      * [改变样式：隔行变色]
      */
-    rowStyle({ row, rowIndex }) {
+    _rowStyle({ row, rowIndex }) {
       if (row.index % 2 === 1) {
         return { background: 'oldlace' }
       }
@@ -189,7 +158,8 @@ export default {
      * @param {[Int]}    rowIndex    索引：行
      * @param {[Int]}    columnIndex 索引：列
      */
-    cellStyle({ row, column, rowIndex, columnIndex }) {
+    _cellStyle({ row, column, rowIndex, columnIndex }) {
+      // return { display: 'flex', alignItems: 'flex-start' }
       // return { background: this.colorObj[column.columnKey] }
     },
     /**
@@ -199,27 +169,12 @@ export default {
      * @param {[Int]}    rowIndex    索引：行
      * @param {[Int]}    columnIndex 索引：列
      */
-    headerStyle({ row, column, rowIndex, columnIndex }) {
+    _headerStyle({ row, column, rowIndex, columnIndex }) {
       if (column.columnKey) {
         return { backgroundImage: `linear-gradient(rgba(255, 255, 255, .3) 0%, ${this.colorArr[parseInt(column.columnKey) % 9]} 80%)` }
-        // return { background: this.colorArr[parseInt(column.columnKey) % 8], color: '#ffffff' }
       }
-    },
-    /**
-     * [兼容IE11：数组includes]
-     * @param  {[String]}  str 关键字
-     * @param  {[Array]}   arr 数组
-     * @return {[Boolean]}     true || false
-     */
-    arrIncludes(str, arr = []) {
-      let status = false
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === str) {
-          status = true
-        }
-      }
-      return status
     }
+    //
   }
 }
 </script>
@@ -233,6 +188,13 @@ export default {
 .comTable {
   border: 0;
 }
+.thActive {
+  color: #409EFF;
+}
+.thText {
+  text-align: center;
+  line-height: 14px;
+}
 </style>
 
 <style>
@@ -242,8 +204,26 @@ export default {
 .el-table__fixed::before, .el-table__fixed::after {
   height: 0 !important;
 }
-.comTable > .el-table__footer-wrapper {
+.comTable > .el-table__footer-wrapper { /* 滚动部分：合计行定位到底部 */
   position: absolute;
   bottom: 0;
+}
+.el-table td, .el-table th { /* 单元格内文字顶部对齐 */
+  vertical-align: top !important;
+}
+.el-table thead {
+  color: #303133;
+}
+
+/* 最后一行 padding，防止合计行遮挡[固定部分、滚动部分] */
+.tableBox > div > .el-table__fixed > .el-table__fixed-body-wrapper > table > tbody > tr:last-child > td, .tableBox > div > .el-table__body-wrapper > table > tbody > tr:last-child > td {
+  padding-bottom: 32px !important;
+}
+/* 合计防换行[固定部分、滚动部分] */
+.tableBox > div > .el-table__fixed > .el-table__fixed-footer-wrapper > table > tbody > tr > td > .cell, .tableBox > div > .el-table__footer-wrapper > table > tbody > tr > td > .cell {
+  height: 23px !important;
+  line-height: 12px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 </style>

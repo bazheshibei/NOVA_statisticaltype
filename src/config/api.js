@@ -14,7 +14,8 @@ const host = '/api_f/'
  * [接口地址]
  */
 const url = {
-  '指标': 'statisticalTypeShowAction.ndo?action=getStatisticsIndicator',
+  // '指标': 'statisticalTypeShowAction.ndo?action=getStatisticsIndicator',
+  '指标': 'statisticalTypeShowAction.ndo?action=getStatisticsIndicatorTest',
   '数据': 'statisticalTypeShowAction.ndo?action=getCustomStatistics',
   '合计': 'statisticalTypeShowAction.ndo?action=getCustomStatisticsTotalQuantity',
   '删除': 'statisticalTypeShowAction.ndo?action=deleteStatisAccessories'

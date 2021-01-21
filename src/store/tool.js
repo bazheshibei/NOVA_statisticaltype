@@ -1,43 +1,188 @@
 
-const obj = {}
+const Tool = {}
+
+/**
+ * [返回：整理后的指标数组]
+ * @param  {[Array]}  res           原始指标数组
+ * @param  {[Object]} selectNodeObj 上次勾选的指标
+ * @return {[Array]}  arr           整理后的指标数组
+ */
+Tool.returnSelectArr = function (res = [], selectNodeObj = {}) {
+  const arr = []
+  res.forEach(function (data, index_1) {
+    /* ----- 拆分大类：[大货相关、开发相关、设计相关、坏单信息......] ----- */
+    const { type_name, type_code, statistical_type_id, sectypelist } = data // type_name: 大货相关、开发相关
+    let num = 0
+    if (type_code === 'dh_relate' || type_code === 'kf_relate' || type_code === 'sj_relate') {
+      num = 1 // 用于合并表格行
+    }
+    const obj = { index_1, label: type_name, code: type_code, id: statistical_type_id, level: 1, columnKey: `${num}` }
+    /* ----- 指标归类：[主要指标、二级指标、三级指标、其他......] ----- */
+    const targetObj = {}
+    const targetArr = []
+    sectypelist.forEach(function (item, index_2) {
+      const { typename, statistical_indicator_type_id, indicatorlist } = item // typename: 主要指标、二级指标
+      if (typeof targetObj[typename || '其他'] !== 'number') {
+        targetObj[typename || '其他'] = targetArr.length
+        targetArr[targetArr.length] = { index_1, index_2, label: typename || '其他', id: statistical_indicator_type_id, level: 2, children: [] }
+      }
+      /* ----- 提取点选的指标：[项目名称、项目类型、项目季节、报价成本......] ----- */
+      indicatorlist.forEach(function (val, index_3) {
+        val.label = val.indicator_name // label: 项目名称、项目类型
+        val.label_p = type_name
+        val.code = val.indicator_code
+        val.code_p = type_code
+        val.id = val.statistical_indicator_id
+        val.id_p = statistical_type_id
+        val.status = false
+        val.level = 3
+        val.index_1 = index_1
+        val.index_2 = index_2
+        val.index_3 = index_3
+        val.columnKey = `${num}`
+        /* 检查上次是否勾选过 */
+        const data = selectNodeObj[index_1] || {}
+        if (Object.keys(data).length) {
+          for (const x in data) {
+            const [num_1, num_2] = x.split('-')
+            if (String(num_1) === String(index_2)) {
+              if (String(num_2) === String(index_3)) {
+                val.status = true
+              }
+            }
+          }
+        }
+        /* 添加数据 */
+        targetArr[targetObj[typename || '其他']].children.push(val)
+      })
+    })
+    obj.children = targetArr
+    arr.push(obj)
+  })
+  // console.log('整理后的指标数组 ----- ', arr)
+  return arr
+}
+
+/**
+ * [提取：选中的数据]
+ * @param  {[Object]} selectNodeObj select 选中的节点对象
+ * @return {[Object]} {}            排序后的数据, 选中：大类, 选中：表头名称
+ */
+Tool.returnSearchData = function (selectNodeObj) {
+  const searchData = {} //  选中的数据 { 0: [{}] } ==> { 大类索引: [二级指标1对象1， 二级指标1对象2， 二级指标2对象1] }
+  const searchVal = {} //   选中：大类 { dh_relate: ['dh_item_name'] }
+  const searchLabel = {} // 选中：表头名称 { dh_relate: ['项目名称'] }
+  for (const x in selectNodeObj) {
+    for (const y in selectNodeObj[x]) {
+      /* 提取：选中的数据 */
+      if (!searchData[selectNodeObj[x][y].index_1]) {
+        searchData[selectNodeObj[x][y].index_1] = []
+      }
+      searchData[selectNodeObj[x][y].index_1].push(selectNodeObj[x][y])
+      /* 提取：选中：大类 */
+      if (!searchVal[selectNodeObj[x][y].code_p]) {
+        searchVal[selectNodeObj[x][y].code_p] = []
+      }
+      searchVal[selectNodeObj[x][y].code_p].push(selectNodeObj[x][y].code)
+      /* 提取：选中：表头名称 */
+      if (!searchLabel[selectNodeObj[x][y].code_p]) {
+        searchLabel[selectNodeObj[x][y].code_p] = []
+      }
+      searchLabel[selectNodeObj[x][y].code_p].push(selectNodeObj[x][y].label)
+    }
+  }
+  return Object.assign({}, { searchData, searchVal, searchLabel })
+}
+
+/**
+ * [重置：指标勾选状态]
+ * @param  {[Array]} selectArr 整理后的指标数组
+ * @return {[Array]} selectArr 取消勾选的指标数组
+ */
+Tool.resetSelectArr = function (selectArr) {
+  selectArr.map(item => {
+    if (item.children && item.children.length) {
+      item.children.map(val => {
+        if (val.children && val.children.length) {
+          val.children.map(node => {
+            node.status = false
+          })
+        }
+      })
+    }
+  })
+  return selectArr
+}
+
+/**
+ * [整理数据：选中的大类]
+ */
+Tool.columncondition = function (data) {
+  const obj = {}
+  for (const x in data) {
+    const arr = data[x] || []
+    arr.forEach((item) => {
+      const { code_p, code, label } = item
+      if (!obj[code_p]) {
+        obj[code_p] = []
+      }
+      obj[code_p].push({ statistics_field_name: code, statistics_remark: label })
+    })
+  }
+  return obj
+}
+
+/**
+ * [整理数据：全部大类 && 全部颜色]
+ */
+Tool.nameColor = function (selectArr = [], colorArr = []) {
+  const name = []
+  selectArr.forEach((item) => {
+    name.push(item.code)
+  })
+  const color = []
+  colorArr.forEach((item) => {
+    color.push(item.slice(1))
+  })
+  return { name, color }
+}
 
 /** ----- getters ----- **/
 
 /**
  * [表格数据]
  */
-obj.tableData = function (state) {
+Tool._tableData = function (state) {
   const that = this
-  const { dataList, searchVal } = state
-  // console.log('选中：大类 ----- ', searchVal)
+  const { dataList = [], searchVal } = state
   let list = []
   /* 循环：原始数据 */
   dataList.forEach(function (item, index) { // item: 单束原始数据：单条  index: 单束数据索引
-    const arr = that.tableRow(item, searchVal, index) /** 表格：单束数据 **/
+    const arr = that._tableRow(item, searchVal, index) /** 表格：单束数据 **/
     arr[0].arrLength = arr.length
     list = list.concat(arr)
   })
-  // console.log(' ----- 表格数据 ----- ', list)
   return list
 }
+
 /**
  * [表格：单束数据]
  * @param {[Object]} item [原始数据：单条]
  * @param {[Object]} data [选中：大类]
  * @param {[Int]}   index [原始数据：索引]
  */
-obj.tableRow = function (item, data, index) {
-  const { custom_dress_series_name, custom_name, dress_type_name, style_name } = item
-  const fixedData = { custom_dress_series_name, custom_name, dress_type_name, style_name, index } // 每条的固定数据
+Tool._tableRow = function (item, data, index) {
+  const { custom_dress_series_name, custom_name, mr_dh_item_name, dress_type_name, style_name } = item
+  const fixedData = { custom_dress_series_name, custom_name, mr_dh_item_name, dress_type_name, style_name, index } // 每条的固定数据
   const otherData = {} //                                                                            抽取的数据
   const returnList = [] //                                                                           返回的数据
   for (const x in data) {
-    const val = data[x] // 选中的大类： x = badorder_info, val = ['bad_bearer_type', 'bad_bearer_name']
+    const val = data[x] || [] // 选中的大类： x = badorder_info, val = ['bad_bearer_type', 'bad_bearer_name']
     if (item[x] === null || !item[x]) {
       /* 不存在 */
     } else if (item[x].length) {
       /* 抽取数据：数组 */
-      const list = this.forEachArr(item[x], val) /** 抽取数据：数组 **/
+      const list = this._forEachArr(item[x], val) /** 抽取数据：数组 **/
       list.forEach(function (val, key) {
         if (!returnList[key]) {
           returnList[key] = { key }
@@ -77,7 +222,7 @@ obj.tableRow = function (item, data, index) {
  * @param  {[Array]} selectArr [选中的大类 -> 某一下拉框的选项]
  * @return {[Array]} list      [原始数据中，符合下拉框选项的数据]
  */
-obj.forEachArr = function (attrArr, selectArr) {
+Tool._forEachArr = function (attrArr, selectArr) {
   const list = [] // 此数组属性中，符合下拉选项的数据
   attrArr.forEach(function (obj) {
     const data = {}
@@ -100,24 +245,21 @@ obj.forEachArr = function (attrArr, selectArr) {
  * [删除线指标]
  * 跟此值相冲突的大类，标记删除线
  */
-obj.deleteType = function (state) {
-  const { selectArr, searchLabel } = state
-  let deleteType = 'asd'
-  for (const x in searchLabel) {
-    if (searchLabel[x] && searchLabel[x].length) {
-      for (let i = 0; i < selectArr.length; i++) {
-        // 下拉框有此属性 && 下拉框的属性与大类属性名相匹配
-        if (selectArr[i].word === x) {
-          const id = selectArr[i].id
-          if (id !== '402888f371ba89940171ba901d1b0000' && id !== '402888f371ba89940171ba91a3590001' && id !== '402888f371ba89940171ba91f1660002' && id !== '402888f371ba89940171ba94a9e80007') {
-            deleteType = id // 记录第一个属性
-            break
-          }
-        }
+Tool._deleteType = function (state) {
+  const { searchData = {} } = state // select 选中的指标数据
+  let deleteType = ''
+  for (const x in searchData) {
+    const arr = searchData[x] || [] // 所选的某一大类 [{指标对象1}, {指标对象2}]
+    if (arr.length) {
+      const { id_p: id } = arr[0] //                               大类的ID
+      const prove_1 = id !== '402888f371ba89940171ba901d1b0000' // 大货相关
+      const prove_2 = id !== '402888f371ba89940171ba91a3590001' // 开发相关
+      const prove_3 = id !== '402888f371ba89940171ba91f1660002' // 设计相关
+      const prove_4 = id !== '402888f371ba89940171ba94a9e80007' // 客户订单相关
+      if (prove_1 && prove_2 && prove_3 && prove_4) {
+        deleteType = id // 记录第一个ID
+        break
       }
-    }
-    if (deleteType !== 'asd') {
-      break
     }
   }
   return deleteType
@@ -126,7 +268,7 @@ obj.deleteType = function (state) {
 /**
  * [是否变化：大类]
  */
-obj.changeSelect = function (state) {
+Tool._changeSelect = function (state) {
   let selectStatus = false
   const { searchVal, lastSearchVal } = state
   const arr = []
@@ -152,7 +294,7 @@ obj.changeSelect = function (state) {
 /**
  * [是否变化：input]
  */
-obj.changeInput = function (state) {
+Tool._changeInput = function (state) {
   let inputStatus = false
   const { searchText, lastSearchText } = state
   if (searchText !== lastSearchText) {
@@ -164,7 +306,7 @@ obj.changeInput = function (state) {
 /**
  * [是否变化：表头]
  */
-obj.changeHeader = function (state) {
+Tool._changeHeader = function (state) {
   let headerStatus = false
   const { searchHeader } = state
   for (const x in searchHeader) {
@@ -177,54 +319,14 @@ obj.changeHeader = function (state) {
 }
 
 /**
- * [整理数据：所勾选的大类]
- */
-obj.exportSelect = function (data) {
-  const obj = {}
-  for (const x in data) {
-    if (data[x].length) {
-      /* 剔除空对象 */
-      obj[x] = data[x]
-    }
-  }
-  return obj
-}
-
-/**
- * [整理数据：全部大类 && 全部颜色]
- */
-obj.nameColor = function (selectArr, colorArr) {
-  const name = []
-  selectArr.forEach(function (item) {
-    name.push(item.word)
-  })
-  const color = []
-  colorArr.forEach(function (item) {
-    color.push(item.slice(1))
-  })
-  return { name, color }
-}
-
-/**
  * [是否选择：大类]
  */
-obj.isChooseSelect = function (data) {
-  const obj = this.exportSelect(data.exportSelect)
-  if (Object.keys(obj).length) {
-    return true
-  } else {
-    return false
-  }
-}
-
-/**
- * [是否选择：大货相关 || 开发相关 || 设计相关]
- */
-obj.isChoose3 = function (data) {
-  const obj = this.exportSelect(data.exportSelect)
+Tool._isChooseSelect = function (state) {
+  const { searchData = {} } = state // select 选中的指标数据
   let status = false
-  for (const x in obj) {
-    if (x === 'dh_relate' || x === 'kf_relate' || x === 'sj_relate' || x === 'customerorder_info') {
+  for (const x in searchData) {
+    const arr = searchData[x] || [] // 所选的某一大类 [{指标对象1}, {指标对象2}]
+    if (arr.length) {
       status = true
       break
     }
@@ -232,4 +334,27 @@ obj.isChoose3 = function (data) {
   return status
 }
 
-export default obj
+/**
+ * [是否选了：大货相关 || 开发相关 || 设计相关]
+ */
+Tool._isChoose3 = function (state) {
+  const { searchData = {} } = state // select 选中的指标数据
+  let status = false
+  for (const x in searchData) {
+    const arr = searchData[x] || [] // 所选的某一大类 [{指标对象1}, {指标对象2}]
+    if (arr.length) {
+      const { code_p } = arr[0] //                       大类的code
+      const prove_1 = code_p === 'dh_relate' //          大货相关
+      const prove_2 = code_p === 'kf_relate' //          开发相关
+      const prove_3 = code_p === 'sj_relate' //          设计相关
+      const prove_4 = code_p === 'customerorder_info' // 客户订单相关
+      if (prove_1 || prove_2 || prove_3 || prove_4) {
+        status = true
+        break
+      }
+    }
+  }
+  return status
+}
+
+export default Tool

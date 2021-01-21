@@ -50,39 +50,18 @@ const HTTP = function (param) {
   // Axios({ method, url, data })
   Axios({ method, url, data: Qs.stringify(data), timeout: 0 })
     .then(function (res) {
-      suc(res.data)
-      // if (res.data.code === '200') {
-      //   suc(res.data.data)
-      // } else {
-      //   /* 弹出：错误信息 */
-      //   if (res.data.message) {
-      //     MessageBox.confirm(res.data.message, '', {
-      //       confirmButtonText: '确定',
-      //       showCancelButton: false,
-      //       type: 'warning'
-      //     }).then(() => {}).catch(() => {})
-      //     console.log('请求成功，但code不是200：', res)
-      //   }
-      // }
-      // /* 以服务的方式调用的 Loading 需要异步关闭 */
-      // if (loading) {
-      //   loadingInstance.close()
-      // }
-    })
-    .catch(function (res) {
-      /* 弹出：请求失败提示 */
-      // MessageBox.confirm('系统升级中...', '请求失败', {
-      // MessageBox.confirm(res, '请求失败', {
-      //   confirmButtonText: '确定',
-      //   showCancelButton: false,
-      //   type: 'error'
-      // }).then(() => {}).catch(() => {})
-      // console.log('请求失败：', res)
-      err(res)
       /* 以服务的方式调用的 Loading 需要异步关闭 */
       if (loading) {
         loadingInstance.close()
       }
+      suc(res.data)
+    })
+    .catch(function (res) {
+      /* 以服务的方式调用的 Loading 需要异步关闭 */
+      if (loading) {
+        loadingInstance.close()
+      }
+      err(res)
     })
 }
 
