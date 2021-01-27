@@ -45,7 +45,7 @@ Dev.A_getData = function (state, getters, dispatch, params) {
   // }
   // console.log('数据 ----- obj:', obj)
 
-  const res = LocalData['单行数据'] || {} // 单行数据, 合并数据
+  const res = LocalData['数据'] || {}
   console.log('数据 ----- res:', res)
   const typeObj = { search: 'is_A_search', export: 'is_A_export' }
   //

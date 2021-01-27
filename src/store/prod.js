@@ -62,14 +62,15 @@ Prod.A_getData = function (state, getters, dispatch, params) {
     if (operationType === 'search') {
       /* 搜索 */
       const suc = function (res) {
-        // console.log('数据 ----- res:', res)
-        // localStorage.setItem('数据', JSON.stringify(res))
+        console.log('数据 ----- res:', res)
+        localStorage.setItem('数据', JSON.stringify(res))
         state[typeObj[operationType]] = true //               可以：搜索 / 导出
         state.isLoading = false //                            关闭：加载动画
         const { datalist, datanum = 0 } = res
         state.pageCount = datanum //                          赋值：总条数
         state.dataList = datalist === null ? [] : datalist // 赋值：表格数据
         state.countData = {} //                               重置：合计
+        state.tableNum = state.tableNum + 1 //                触发重新渲染表格
       }
       Api({ name, obj, suc, method })
     } else if (operationType === 'export') {

@@ -1,4 +1,3 @@
-
 /**
  * [指标]
  */
@@ -7,12 +6,12 @@ const arr = [{
     'indicatorlist': [{
       'enum_value': '',
       'indicator_code': 'dh_item_name',
-      'indicator_name': '项目名称',
+      'indicator_name': '大货项目名称',
       'is_default_select': 1,
       'search_type': '1',
       'sort_num': 1,
       'statistical_indicator_id': 'cd1d9b1e892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f276469ec4017646a148580000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
     }, {
       'enum_value': '设计,开发,大货',
       'indicator_code': 'dh_item_type',
@@ -21,7 +20,7 @@ const arr = [{
       'search_type': '2',
       'sort_num': 2,
       'statistical_indicator_id': 'cd1d9b97892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f276469ec4017646a148580000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
     }, {
       'enum_value': '',
       'indicator_code': 'dh_item_season',
@@ -30,12 +29,8 @@ const arr = [{
       'search_type': '1',
       'sort_num': 3,
       'statistical_indicator_id': 'cd1d9c5b892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f276469ec4017646a148580000'
-    }],
-    'statistical_indicator_type_id': '402889f276469ec4017646a148580000',
-    'typename': '主要指标'
-  }, {
-    'indicatorlist': [{
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
+    }, {
       'enum_value': '',
       'indicator_code': 'dh_style_code',
       'indicator_name': '款号',
@@ -43,7 +38,7 @@ const arr = [{
       'search_type': '1',
       'sort_num': 4,
       'statistical_indicator_id': 'cd1d9ccb892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
     }, {
       'enum_value': '业务中,结案',
       'indicator_code': 'dh_item_status',
@@ -52,25 +47,16 @@ const arr = [{
       'search_type': '2',
       'sort_num': 5,
       'statistical_indicator_id': 'cd1d8daa892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
-    }, {
-      'enum_value': '',
-      'indicator_code': 'dh_business_group_name',
-      'indicator_name': '业务组名称',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 6,
-      'statistical_indicator_id': 'cd1d8c96892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
     }, {
       'enum_value': '',
       'indicator_code': 'dh_season_name',
-      'indicator_name': '季节名称',
+      'indicator_name': '客户季节',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 7,
       'statistical_indicator_id': 'cd1d9234892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
     }, {
       'enum_value': '客户提供,offer,设计项目,开发项目,追单,buying,补单',
       'indicator_code': 'dh_design_source',
@@ -79,8 +65,190 @@ const arr = [{
       'search_type': '2',
       'sort_num': 8,
       'statistical_indicator_id': 'cd1d9bf9892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4'
+    }],
+    'statistical_indicator_type_id': '2c9f10b676fe8ba001770007faef09b4',
+    'typename': '基础信息'
+  }, {
+    'indicatorlist': [{
+      'enum_value': '',
+      'indicator_code': 'dh_business_group_name',
+      'indicator_name': '业务组名称',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 6,
+      'statistical_indicator_id': 'cd1d8c96892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700084c4c09b5'
+    }],
+    'statistical_indicator_type_id': '2c9f10b676fe8ba0017700084c4c09b5',
+    'typename': '岗位相关'
+  }, {
+    'indicatorlist': [{
+      'enum_value': '',
+      'indicator_code': 'dh_bj_cost',
+      'indicator_name': '报价成本',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 25,
+      'statistical_indicator_id': 'cd1da480892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
     }, {
+      'enum_value': '',
+      'indicator_code': 'dh_cc_estimate_cost',
+      'indicator_name': '预计成本',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 27,
+      'statistical_indicator_id': 'cd1da53d892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_cc_account_cost',
+      'indicator_name': '结算成本',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 29,
+      'statistical_indicator_id': 'cd1da67a892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_jd_cost',
+      'indicator_name': '接单成本',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 30,
+      'statistical_indicator_id': 'cd1da4df892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_bz_cost',
+      'indicator_name': '标准成本',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 31,
+      'statistical_indicator_id': 'cd1da609892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_zz_cost',
+      'indicator_name': '最终成本(未开发)',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 32,
+      'statistical_indicator_id': 'cd1da6db892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6'
+    }],
+    'statistical_indicator_type_id': '2c9f10b676fe8ba0017700086ca309b6',
+    'typename': '成本相关'
+  }, {
+    'indicatorlist': [{
+      'enum_value': '',
+      'indicator_code': 'dh_app_confirm_count',
+      'indicator_name': 'APP确认次数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 43,
+      'statistical_indicator_id': 'cd1d5b1b892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_pp_confirm_count',
+      'indicator_name': 'PP确认次数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 44,
+      'statistical_indicator_id': 'cd1d5bef892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_app_plan_date',
+      'indicator_name': 'APP计划时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 52,
+      'statistical_indicator_id': 'cd1d62c1892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_app_finish_date',
+      'indicator_name': 'APP完成时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 53,
+      'statistical_indicator_id': 'cd1d632f892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_app_finish_period',
+      'indicator_name': 'APP确认周期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 54,
+      'statistical_indicator_id': 'cd1d6438892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '及时,不及时,未完成,未知',
+      'indicator_code': 'dh_app_timeliness',
+      'indicator_name': 'APP及时性',
+      'is_default_select': 0,
+      'search_type': '2',
+      'sort_num': 55,
+      'statistical_indicator_id': 'cd1d6399892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_pp_plan_date',
+      'indicator_name': 'PP计划时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 56,
+      'statistical_indicator_id': 'cd1d64af892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_pp_finish_date',
+      'indicator_name': 'PP完成时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 57,
+      'statistical_indicator_id': 'cd1d6552892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }, {
+      'enum_value': '及时,不及时,未完成,未知',
+      'indicator_code': 'dh_pp_timeliness',
+      'indicator_name': 'PP确认及时性',
+      'is_default_select': 0,
+      'search_type': '2',
+      'sort_num': 60,
+      'statistical_indicator_id': 'cd1d65c0892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7'
+    }],
+    'statistical_indicator_type_id': '2c9f10b676fe8ba001770008a4b509b7',
+    'typename': '样衣相关'
+  }, {
+    'indicatorlist': [{
+      'enum_value': '',
+      'indicator_code': 'dh_custom_account_time',
+      'indicator_name': '客人结算时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 34,
+      'statistical_indicator_id': 'cd1d9873892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008d3de09b8'
+    }, {
+      'enum_value': '',
+      'indicator_code': 'dh_custom_account_number',
+      'indicator_name': '客人结算件数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 35,
+      'statistical_indicator_id': 'cd1d98e7892011eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': '2c9f10b676fe8ba001770008d3de09b8'
+    }],
+    'statistical_indicator_type_id': '2c9f10b676fe8ba001770008d3de09b8',
+    'typename': '客人相关'
+  }, {
+    'indicatorlist': [{
       'enum_value': '',
       'indicator_code': 'dh_sjg_managers',
       'indicator_name': '设计岗',
@@ -88,172 +256,83 @@ const arr = [{
       'search_type': '1',
       'sort_num': 9,
       'statistical_indicator_id': 'cd1d5a29892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_kfywg_managers',
       'indicator_name': '开发业务岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 11,
       'statistical_indicator_id': 'cd1d6246892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_jsgy_managers',
       'indicator_name': '技术工艺岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 13,
       'statistical_indicator_id': 'cd1d9fb3892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_jsdh_managers',
       'indicator_name': '技术单耗岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 15,
       'statistical_indicator_id': 'cd1da02e892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_jsbx_managers',
       'indicator_name': '技术版型岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 17,
       'statistical_indicator_id': 'cd1da094892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000'
-    }],
-    'statistical_indicator_type_id': '402889f2764a80cd01764a8f4cd30000',
-    'typename': '二级指标'
-  }, {
-    'indicatorlist': [{
-      'enum_value': '',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
       'indicator_code': 'dh_kfqc_managers',
       'indicator_name': '服装QC',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 19,
       'statistical_indicator_id': 'cd1d7896892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8fc8750001'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_mlg_managers',
       'indicator_name': '面料岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 21,
       'statistical_indicator_id': 'cd1d7f4d892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8fc8750001'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'dh_fzywg_managers',
       'indicator_name': '服装业务岗',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 23,
       'statistical_indicator_id': 'cd1d8373892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8fc8750001'
-    }],
-    'statistical_indicator_type_id': '402889f2764a80cd01764a8fc8750001',
-    'typename': '三级指标'
-  }, {
-    'indicatorlist': [{
-      'enum_value': null,
-      'indicator_code': 'dh_bj_cost',
-      'indicator_name': '报价成本',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 25,
-      'statistical_indicator_id': 'cd1da480892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'dh_cc_estimate_cost',
-      'indicator_name': '预计成本(单件)',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 26,
-      'statistical_indicator_id': 'cd1d54c7892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_cc_account_cost',
-      'indicator_name': '结算成本(单件)',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 28,
-      'statistical_indicator_id': 'cd1d55a5892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_cc_account_cost',
-      'indicator_name': '结算成本',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 29,
-      'statistical_indicator_id': 'cd1da67a892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_jd_cost',
-      'indicator_name': '接单成本',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 30,
-      'statistical_indicator_id': 'cd1da4df892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_bz_cost',
-      'indicator_name': '标准成本',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 31,
-      'statistical_indicator_id': 'cd1da609892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_zz_cost',
-      'indicator_name': '最终成本',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 32,
-      'statistical_indicator_id': 'cd1da6db892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_dress_plant_count',
-      'indicator_name': '实际加工厂个数',
+      'indicator_name': '委外加工厂个数',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 33,
       'statistical_indicator_id': 'cd1d97e7892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'dh_custom_account_time',
-      'indicator_name': '客人结算时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 34,
-      'statistical_indicator_id': 'cd1d9873892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_custom_account_number',
-      'indicator_name': '客人结算件数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 35,
-      'statistical_indicator_id': 'cd1d98e7892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_surplus_material_amount',
-      'indicator_name': '剩余物料金额',
+      'indicator_name': '清退物料总金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 36,
@@ -287,9 +366,9 @@ const arr = [{
       'statistical_indicator_id': 'cd1d8301892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_buying_plan_name',
-      'indicator_name': '所属买样计划',
+      'indicator_name': '原款买样批次',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 40,
@@ -312,24 +391,6 @@ const arr = [{
       'search_type': '1',
       'sort_num': 42,
       'statistical_indicator_id': 'cd1d5950892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_app_confirm_count',
-      'indicator_name': 'APP确认次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 43,
-      'statistical_indicator_id': 'cd1d5b1b892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_pp_confirm_count',
-      'indicator_name': 'PP确认次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 44,
-      'statistical_indicator_id': 'cd1d5bef892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
@@ -396,60 +457,6 @@ const arr = [{
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'dh_app_plan_date',
-      'indicator_name': 'APP计划时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 52,
-      'statistical_indicator_id': 'cd1d62c1892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_app_finish_date',
-      'indicator_name': 'APP实际完成时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 53,
-      'statistical_indicator_id': 'cd1d632f892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_app_finish_period',
-      'indicator_name': 'APP确认周期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 54,
-      'statistical_indicator_id': 'cd1d6438892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '及时,不及时,未完成,未知',
-      'indicator_code': 'dh_app_timeliness',
-      'indicator_name': 'APP完成及时性',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 55,
-      'statistical_indicator_id': 'cd1d6399892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_pp_plan_date',
-      'indicator_name': 'PP计划时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 56,
-      'statistical_indicator_id': 'cd1d64af892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_pp_finish_date',
-      'indicator_name': 'PP实际完成时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 57,
-      'statistical_indicator_id': 'cd1d6552892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
       'indicator_code': 'dh_pp_finish_period',
       'indicator_name': 'PP确认周期(距客户下单)',
       'is_default_select': 0,
@@ -465,15 +472,6 @@ const arr = [{
       'search_type': '1',
       'sort_num': 59,
       'statistical_indicator_id': 'cd1d4f17892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '及时,不及时,未完成,未知',
-      'indicator_code': 'dh_pp_timeliness',
-      'indicator_name': 'PP完成及时性',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 60,
-      'statistical_indicator_id': 'cd1d65c0892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
@@ -630,33 +628,6 @@ const arr = [{
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'dh_spml_fail_plant_count',
-      'indicator_name': '首批面料工厂拒绝次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 78,
-      'statistical_indicator_id': 'cd1d7b9c892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_spml_fail_nova_count',
-      'indicator_name': '首批面料nova拒绝次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 79,
-      'statistical_indicator_id': 'cd1d7c10892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'dh_spml_fail_custom_count',
-      'indicator_name': '首批面料客户拒绝次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 80,
-      'statistical_indicator_id': 'cd1d7cca892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
       'indicator_code': 'dh_ypdc_plan_date',
       'indicator_name': '一批到厂计划时间',
       'is_default_select': 0,
@@ -710,9 +681,9 @@ const arr = [{
       'statistical_indicator_id': 'cd1d80c6892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_mljq_finish_period',
-      'indicator_name': '面料交期节点完成周期',
+      'indicator_name': '面料交齐节点完成周期',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 87,
@@ -746,36 +717,36 @@ const arr = [{
       'statistical_indicator_id': 'cd1d81f9892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_ml_number',
-      'indicator_name': '面料数量',
+      'indicator_name': '主面料采购数量',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 91,
       'statistical_indicator_id': 'cd1d52b2892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_ml_total_amount',
-      'indicator_name': '面料金额',
+      'indicator_name': '主面料采购总金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 92,
       'statistical_indicator_id': 'cd1d53bb892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_creator',
-      'indicator_name': '创建人',
+      'indicator_name': '项目创建人',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 93,
       'statistical_indicator_id': 'cd1d9d34892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'dh_create_time',
-      'indicator_name': '创建时间',
+      'indicator_name': '项目创建时间',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 94,
@@ -793,12 +764,12 @@ const arr = [{
     'indicatorlist': [{
       'enum_value': '',
       'indicator_code': 'kf_item_name',
-      'indicator_name': '项目名称',
+      'indicator_name': '开发项目名称',
       'is_default_select': 1,
       'search_type': '1',
       'sort_num': 1,
       'statistical_indicator_id': 'c48e447e892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8fff540002'
+      'statistical_indicator_type_id': ''
     }, {
       'enum_value': '设计,开发,大货',
       'indicator_code': 'kf_item_type',
@@ -807,29 +778,25 @@ const arr = [{
       'search_type': '2',
       'sort_num': 2,
       'statistical_indicator_id': 'c48e4503892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a8fff540002'
-    }],
-    'statistical_indicator_type_id': '402889f2764a80cd01764a8fff540002',
-    'typename': '主要指标1'
-  }, {
-    'indicatorlist': [{
-      'enum_value': '',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
       'indicator_code': 'kf_item_season',
       'indicator_name': '项目季节',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 3,
       'statistical_indicator_id': 'c48e45cb892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'kf_style_code',
       'indicator_name': '款号',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 4,
       'statistical_indicator_id': 'c48e4633892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003'
+      'statistical_indicator_type_id': ''
     }, {
       'enum_value': '业务中,结案',
       'indicator_code': 'kf_item_status',
@@ -838,30 +805,26 @@ const arr = [{
       'search_type': '2',
       'sort_num': 5,
       'statistical_indicator_id': 'c48e2930892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003'
+      'statistical_indicator_type_id': ''
     }, {
-      'enum_value': '',
+      'enum_value': null,
       'indicator_code': 'kf_business_group_name',
       'indicator_name': '业务组名称',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 6,
       'statistical_indicator_id': 'c48e27ed892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003'
+      'statistical_indicator_type_id': ''
     }, {
       'enum_value': '',
       'indicator_code': 'kf_season_name',
-      'indicator_name': '季节名称',
+      'indicator_name': '客户季节',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 7,
       'statistical_indicator_id': 'c48e2d66892011eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003'
-    }],
-    'statistical_indicator_type_id': '402889f2764a80cd01764a9017e80003',
-    'typename': '二级指标2'
-  }, {
-    'indicatorlist': [{
+      'statistical_indicator_type_id': ''
+    }, {
       'enum_value': '客户提供,offer,设计项目,开发项目,追单,buying,补单',
       'indicator_code': 'kf_design_source',
       'indicator_name': '项目来源',
@@ -972,7 +935,7 @@ const arr = [{
     }, {
       'enum_value': '是,否',
       'indicator_code': 'kf_is_make_xsy',
-      'indicator_name': '是否入选销样',
+      'indicator_name': '是否入选销售样',
       'is_default_select': 0,
       'search_type': '2',
       'sort_num': 25,
@@ -1132,18 +1095,18 @@ const arr = [{
       'statistical_indicator_id': 'c48e33cf892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'kf_ml_plan_date',
-      'indicator_name': '面料要求时间',
+      'indicator_name': '面料确认计划时间',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 43,
       'statistical_indicator_id': 'c48e3443892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'kf_ml_finish_date',
-      'indicator_name': '面料要求完成时间',
+      'indicator_name': '面料确认实际完成时间',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 44,
@@ -1339,27 +1302,27 @@ const arr = [{
       'statistical_indicator_id': 'c48e4113892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'kf_buying_plan_name',
-      'indicator_name': '所属买样计划',
+      'indicator_name': '原款买样批次',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 66,
       'statistical_indicator_id': 'c48e47b8892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'kf_creator',
-      'indicator_name': '创建人',
+      'indicator_name': '项目创建人',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 67,
       'statistical_indicator_id': 'c48e469a892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'kf_create_time',
-      'indicator_name': '创建时间',
+      'indicator_name': '项目创建时间',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 68,
@@ -1375,9 +1338,9 @@ const arr = [{
 }, {
   'sectypelist': [{
     'indicatorlist': [{
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_item_name',
-      'indicator_name': '项目名称',
+      'indicator_name': '设计项目名称',
       'is_default_select': 1,
       'search_type': '1',
       'sort_num': 1,
@@ -1429,9 +1392,9 @@ const arr = [{
       'statistical_indicator_id': 'ad1508a8892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_season_name',
-      'indicator_name': '季节名称',
+      'indicator_name': '客户季节',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 7,
@@ -1447,18 +1410,18 @@ const arr = [{
       'statistical_indicator_id': 'ad1516ed892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_make_clothing_plant_name',
-      'indicator_name': '开发服装工厂(打样)',
+      'indicator_name': '打样服装工厂',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 9,
       'statistical_indicator_id': 'ad15122a892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_main_ml_category',
-      'indicator_name': '主面料信息',
+      'indicator_name': '主面料品类',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 10,
@@ -1557,7 +1520,7 @@ const arr = [{
     }, {
       'enum_value': '是,否',
       'indicator_code': 'sj_is_make_xsy',
-      'indicator_name': '是否入选销样',
+      'indicator_name': '是否入选销售样',
       'is_default_select': 0,
       'search_type': '2',
       'sort_num': 29,
@@ -1573,27 +1536,27 @@ const arr = [{
       'statistical_indicator_id': 'ad150957892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_buying_plan_name',
-      'indicator_name': '所属买样计划',
+      'indicator_name': '原款买样批次',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 31,
       'statistical_indicator_id': 'ad151960892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_creator',
-      'indicator_name': '创建人',
+      'indicator_name': '项目创建人',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 32,
       'statistical_indicator_id': 'ad151846892011eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'sj_create_time',
-      'indicator_name': '创建时间',
+      'indicator_name': '项目创建时间',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 33,
@@ -1609,153 +1572,288 @@ const arr = [{
 }, {
   'sectypelist': [{
     'indicatorlist': [{
-      'enum_value': null,
-      'indicator_code': 'bad_summary_context',
-      'indicator_name': '项目总结描述',
-      'is_default_select': 0,
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_order_time',
+      'indicator_name': '客人下单时间',
+      'is_default_select': 1,
       'search_type': '1',
       'sort_num': 1,
-      'statistical_indicator_id': '11ec7ce1892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '30997c4f892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_bad_total_amount',
-      'indicator_name': '坏单总金额',
-      'is_default_select': 0,
-      'search_type': '1',
+      'enum_value': '普通,急单,追单,返单,快单',
+      'indicator_code': 'cuso_order_type',
+      'indicator_name': '客人订单类型',
+      'is_default_select': 1,
+      'search_type': '2',
       'sort_num': 2,
-      'statistical_indicator_id': '11ec7d4f892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '30998b03892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_prepay_amount',
-      'indicator_name': '罚款金额',
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_dress_number',
+      'indicator_name': '客人订单件数',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 3,
-      'statistical_indicator_id': '11ec7db0892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '309982ba892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_jqzk_amount',
-      'indicator_name': '交期折扣金额',
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_order_price_per',
+      'indicator_name': '客人订单单价',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 4,
-      'statistical_indicator_id': '11ec7e13892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '309976ef892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_zlzk_amount',
-      'indicator_name': '质量折扣金额',
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_order_amount',
+      'indicator_name': '客人订单总金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 5,
-      'statistical_indicator_id': '11ec7f1c892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '30998381892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'bad_jgbg_amount',
-      'indicator_name': '价格变更金额',
+      'indicator_code': 'cuso_plm_deliver_date',
+      'indicator_name': 'plm系统交期',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 6,
-      'statistical_indicator_id': '11ec7fac892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '309987bd892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_czsw_amount',
-      'indicator_name': '操作失误金额',
+      'enum_value': '',
+      'indicator_code': 'cuso_is_finish_settlement',
+      'indicator_name': '客人是否全部结算',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 7,
-      'statistical_indicator_id': '11ec800b892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '30997416892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'bad_bad_reason',
-      'indicator_name': '坏单原因',
+      'indicator_code': 'cuso_custom_plant_name',
+      'indicator_name': '报客人工厂',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 8,
-      'statistical_indicator_id': '11ec8064892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '309977bb892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_plant_bear_amount',
-      'indicator_name': '工厂承担金额',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 9,
-      'statistical_indicator_id': '11ec80c3892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'bad_our_bear_amount',
-      'indicator_name': '我司承担金额',
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_deliver_date',
+      'indicator_name': '客人订单交期',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 10,
-      'statistical_indicator_id': '11ec811b892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '员工,工厂,未知',
-      'indicator_code': 'bad_bearer_type',
-      'indicator_name': '承认人类型',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 11,
-      'statistical_indicator_id': '11ec7009892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '30997ccd892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'bad_bearer_name',
-      'indicator_name': '责任人/工厂',
+      'indicator_code': 'cuso_nova_actual_delivery_date',
+      'indicator_name': '诺雅实际交货日期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 11,
+      'statistical_indicator_id': '30998681892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_actual_delivery_time',
+      'indicator_name': '实际交期(箱单日期)',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 12,
-      'statistical_indicator_id': '11ec7448892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '309963b2892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'bad_item_result_reason',
-      'indicator_name': '成功或失败的原因',
+      'enum_value': '',
+      'indicator_code': 'cuso_delivery_num',
+      'indicator_name': '交货合格数量',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 13,
-      'statistical_indicator_id': '11ec7c3b892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '3099647b892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_settlement_dress_num',
+      'indicator_name': '客人结算数量',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 14,
+      'statistical_indicator_id': '309972f7892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_settlement_price',
+      'indicator_name': '客人结算单价',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 15,
+      'statistical_indicator_id': '309974aa892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_actual_discount',
+      'indicator_name': '实际折扣',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 16,
+      'statistical_indicator_id': '3099751a892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_discount_amount',
+      'indicator_name': '折扣后结算总金额',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 17,
+      'statistical_indicator_id': '309985a8892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_sample_craft_accuracy',
+      'indicator_name': '样品工艺单准确性',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 18,
+      'statistical_indicator_id': '30998883892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_dh_craft_accuracy',
+      'indicator_name': '大货工艺单准确性',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 19,
+      'statistical_indicator_id': '309988e3892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_custom_retail_price',
+      'indicator_name': '客户零售价',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 20,
+      'statistical_indicator_id': '30997838892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_actual_deliver_date',
+      'indicator_name': '客人沟通后交期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 21,
+      'statistical_indicator_id': '30997613892111eab5d850334b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '是,否,未知',
+      'indicator_code': 'cuso_is_delivery_ontime',
+      'indicator_name': '是否按时交齐(客人交期)',
+      'is_default_select': 0,
+      'search_type': '2',
+      'sort_num': 22,
+      'statistical_indicator_id': '309978a2892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_custom_deliver_overtime',
+      'indicator_name': '拖期天数(客人交期)',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 23,
+      'statistical_indicator_id': '30997912892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_custom_deliver_overtime_reason',
+      'indicator_name': '延期交货原因',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 24,
+      'statistical_indicator_id': '309986f9892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '合格,不合格,退步接受,现场返修,未知',
+      'indicator_code': 'cuso_dress_check_result',
+      'indicator_name': '客人验货结果',
+      'is_default_select': 0,
+      'search_type': '2',
+      'sort_num': 25,
+      'statistical_indicator_id': '3099797b892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_disqualification_deal_remark',
+      'indicator_name': '不合格处理方式',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 26,
+      'statistical_indicator_id': '3099881e892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_delivery_detail',
+      'indicator_name': '客人验收记录(日期/数量)',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 27,
+      'statistical_indicator_id': '30996081892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': '',
+      'indicator_code': 'cuso_notice_kptime',
+      'indicator_name': '客人通知开票时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 28,
+      'statistical_indicator_id': '309965b0892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'cuso_actual_kptime',
+      'indicator_name': '实际开票时间',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 29,
+      'statistical_indicator_id': '30997591892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }],
     'statistical_indicator_type_id': '',
     'typename': ''
   }],
-  'statistical_type_id': '402888f371ba89940171ba92ebfa0003',
-  'type_code': 'badorder_info',
-  'type_name': '坏单信息'
+  'statistical_type_id': '402888f371ba89940171ba94a9e80007',
+  'type_code': 'customerorder_info',
+  'type_name': '客户订单相关'
 }, {
   'sectypelist': [{
     'indicatorlist': [{
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_plant_name',
-      'indicator_name': '委外工厂',
+      'indicator_name': '委外服装厂',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 1,
       'statistical_indicator_id': '1e62f6b2892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_ww_dress_count',
-      'indicator_name': '委外数量',
+      'indicator_name': '委外件数',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 2,
       'statistical_indicator_id': '1e62f759892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_ww_dress_amount',
-      'indicator_name': '委外金额',
+      'indicator_name': '委外总金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 3,
@@ -1845,7 +1943,7 @@ const arr = [{
     }, {
       'enum_value': '合格,不合格,未知',
       'indicator_code': 'po_qc_dress_check_result',
-      'indicator_name': '成衣QC验货结果',
+      'indicator_name': '工厂QC验货结果',
       'is_default_select': 0,
       'search_type': '2',
       'sort_num': 13,
@@ -1951,9 +2049,9 @@ const arr = [{
       'statistical_indicator_id': '1e62fa72892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_plant_dress_price',
-      'indicator_name': '加工单价',
+      'indicator_name': '加工单价(委外)',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 25,
@@ -1978,18 +2076,18 @@ const arr = [{
       'statistical_indicator_id': '1e62f125892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_plant_rebate_amount',
-      'indicator_name': '折让金额',
+      'indicator_name': '结算折让总金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 28,
       'statistical_indicator_id': '1e62f185892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_plant_account_number',
-      'indicator_name': '结算数量',
+      'indicator_name': '工厂结算数量',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 29,
@@ -2014,9 +2112,9 @@ const arr = [{
       'statistical_indicator_id': '1e62fb9a892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
+      'enum_value': '',
       'indicator_code': 'po_plant_rebate_reason',
-      'indicator_name': '折让原因',
+      'indicator_name': '结算折让原因',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 32,
@@ -2122,10 +2220,226 @@ const arr = [{
 }, {
   'sectypelist': [{
     'indicatorlist': [{
+      'enum_value': '面料,辅料,费用',
+      'indicator_code': 'mi_material_type',
+      'indicator_name': '物料类型',
+      'is_default_select': 0,
+      'search_type': '2',
+      'sort_num': 1,
+      'statistical_indicator_id': '3553ed89892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_category',
+      'indicator_name': '面料品类',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 2,
+      'statistical_indicator_id': '3553fad0892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_name',
+      'indicator_name': '物料名称',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 3,
+      'statistical_indicator_id': '3553df02892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_color_name',
+      'indicator_name': '物料颜色',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 4,
+      'statistical_indicator_id': '3553df6c892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_standard_name',
+      'indicator_name': '物料规格',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 5,
+      'statistical_indicator_id': '3553dfcf892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_location',
+      'indicator_name': '面料使用部位',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 6,
+      'statistical_indicator_id': '3553d828892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_ml_managers',
+      'indicator_name': '面料业务员',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 7,
+      'statistical_indicator_id': '3553db7c892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_purchase_measure',
+      'indicator_name': '采购数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 8,
+      'statistical_indicator_id': '3553ee2f892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_has_deliver_number',
+      'indicator_name': '发货数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 9,
+      'statistical_indicator_id': '3553eedd892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_has_storage_number',
+      'indicator_name': '入库数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 10,
+      'statistical_indicator_id': '3553ef4f892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_ydz',
+      'indicator_name': '溢短装',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 11,
+      'statistical_indicator_id': '3553dc3e892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_deliver_count',
+      'indicator_name': '面料发货次数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 12,
+      'statistical_indicator_id': '3553dcc0892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_history_deliver_info',
+      'indicator_name': '历次发货时间/数量',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 13,
+      'statistical_indicator_id': '3553dd45892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_surplus_material_number',
+      'indicator_name': '剩余面料数量',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 14,
+      'statistical_indicator_id': '3553ddff892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_surplus_material_amount',
+      'indicator_name': '剩余面料金额',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 15,
+      'statistical_indicator_id': '3553de85892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_pay_total_amount',
+      'indicator_name': '结算金额',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 16,
+      'statistical_indicator_id': '3553f004892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_inquire_number',
+      'indicator_name': '询价次数',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 17,
+      'statistical_indicator_id': '3553f086892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_order_date',
+      'indicator_name': '面料下单日期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 18,
+      'statistical_indicator_id': '3553f0f1892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_plan_delivery_date',
+      'indicator_name': '面料预计到货日期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 19,
+      'statistical_indicator_id': '3553f157892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_one_delivery_date',
+      'indicator_name': '一批实际交期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 20,
+      'statistical_indicator_id': '3553f1bc892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_one_finish_period',
+      'indicator_name': '一批完成周期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 21,
+      'statistical_indicator_id': '3553f25e892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_all_delivery_date',
+      'indicator_name': '面料全部到厂日期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 22,
+      'statistical_indicator_id': '3553f2d1892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'mi_material_all_finish_period',
+      'indicator_name': '面料全部到厂周期',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 23,
+      'statistical_indicator_id': '3553f346892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }],
+    'statistical_indicator_type_id': '',
+    'typename': ''
+  }],
+  'statistical_type_id': '402888f371be4a4b0171bf9c22e20000',
+  'type_code': 'material_info',
+  'type_name': '物料分析相关'
+}, {
+  'sectypelist': [{
+    'indicatorlist': [{
       'enum_value': null,
       'indicator_code': 'puro_purchase_order_number',
       'indicator_name': '采购单号',
-      'is_default_select': 0,
+      'is_default_select': 1,
       'search_type': '1',
       'sort_num': 1,
       'statistical_indicator_id': '2618d00d892111eab5d8506b4b2360c8',
@@ -2161,7 +2475,7 @@ const arr = [{
       'enum_value': null,
       'indicator_code': 'puro_material_name',
       'indicator_name': '物料名称',
-      'is_default_select': 0,
+      'is_default_select': 1,
       'search_type': '1',
       'sort_num': 5,
       'statistical_indicator_id': '2618e22b892111eab5d8506b4b2360c8',
@@ -2505,7 +2819,7 @@ const arr = [{
   }],
   'statistical_type_id': '402888f371ba89940171ba9466890005',
   'type_code': 'purchaseorder_info',
-  'type_name': '大货采购相关'
+  'type_name': '采购跟进相关'
 }, {
   'sectypelist': [{
     'indicatorlist': [{
@@ -2753,497 +3067,130 @@ const arr = [{
   'sectypelist': [{
     'indicatorlist': [{
       'enum_value': null,
-      'indicator_code': 'cuso_custom_order_time',
-      'indicator_name': '下单时间',
-      'is_default_select': 1,
+      'indicator_code': 'bad_summary_context',
+      'indicator_name': '项目总结描述',
+      'is_default_select': 0,
       'search_type': '1',
       'sort_num': 1,
-      'statistical_indicator_id': '30997c4f892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '普通,急单,追单,返单,快单',
-      'indicator_code': 'cuso_order_type',
-      'indicator_name': '订单类型',
-      'is_default_select': 1,
-      'search_type': '2',
-      'sort_num': 2,
-      'statistical_indicator_id': '30998b03892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7ce1892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_custom_dress_number',
-      'indicator_name': '订单数量',
+      'indicator_code': 'bad_bad_total_amount',
+      'indicator_name': '坏单总金额',
+      'is_default_select': 0,
+      'search_type': '1',
+      'sort_num': 2,
+      'statistical_indicator_id': '11ec7d4f892111eab5d8506b4b2360c8',
+      'statistical_indicator_type_id': ''
+    }, {
+      'enum_value': null,
+      'indicator_code': 'bad_prepay_amount',
+      'indicator_name': '罚款金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 3,
-      'statistical_indicator_id': '309982ba892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7db0892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_custom_order_price_per',
-      'indicator_name': '订单单价',
+      'indicator_code': 'bad_jqzk_amount',
+      'indicator_name': '交期折扣金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 4,
-      'statistical_indicator_id': '309976ef892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7e13892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_custom_order_amount',
-      'indicator_name': '订单总金额',
+      'indicator_code': 'bad_zlzk_amount',
+      'indicator_name': '质量折扣金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 5,
-      'statistical_indicator_id': '30998381892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7f1c892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_plm_deliver_date',
-      'indicator_name': 'plm系统交期',
+      'indicator_code': 'bad_jgbg_amount',
+      'indicator_name': '价格变更金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 6,
-      'statistical_indicator_id': '309987bd892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7fac892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_is_finish_settlement',
-      'indicator_name': '是否全部结算',
+      'indicator_code': 'bad_czsw_amount',
+      'indicator_name': '操作失误金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 7,
-      'statistical_indicator_id': '30997416892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec800b892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_custom_plant_name',
-      'indicator_name': '报客人工厂',
+      'indicator_code': 'bad_bad_reason',
+      'indicator_name': '坏单原因',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 8,
-      'statistical_indicator_id': '309977bb892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec8064892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_discount_price',
-      'indicator_name': '含税单价',
+      'indicator_code': 'bad_plant_bear_amount',
+      'indicator_name': '工厂承担金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 9,
-      'statistical_indicator_id': '309984fe892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec80c3892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_custom_deliver_date',
-      'indicator_name': '订单交期',
+      'indicator_code': 'bad_our_bear_amount',
+      'indicator_name': '我司承担金额',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 10,
-      'statistical_indicator_id': '30997ccd892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec811b892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_nova_actual_delivery_date',
-      'indicator_name': '诺雅实际交货日期',
+      'enum_value': '员工,工厂,未知',
+      'indicator_code': 'bad_bearer_type',
+      'indicator_name': '承认人类型',
       'is_default_select': 0,
-      'search_type': '1',
+      'search_type': '2',
       'sort_num': 11,
-      'statistical_indicator_id': '30998681892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7009892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_actual_delivery_time',
-      'indicator_name': '实际交期',
+      'indicator_code': 'bad_bearer_name',
+      'indicator_name': '责任人/工厂',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 12,
-      'statistical_indicator_id': '309963b2892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7448892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
       'enum_value': null,
-      'indicator_code': 'cuso_delivery_num',
-      'indicator_name': '交货数量',
+      'indicator_code': 'bad_item_result_reason',
+      'indicator_name': '成功或失败的原因',
       'is_default_select': 0,
       'search_type': '1',
       'sort_num': 13,
-      'statistical_indicator_id': '3099647b892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_settlement_dress_num',
-      'indicator_name': '结算数量',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 14,
-      'statistical_indicator_id': '309972f7892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_settlement_price',
-      'indicator_name': '结算单价',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 15,
-      'statistical_indicator_id': '309974aa892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_actual_discount',
-      'indicator_name': '实际折扣',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 16,
-      'statistical_indicator_id': '3099751a892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_discount_amount',
-      'indicator_name': '折后收入',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 17,
-      'statistical_indicator_id': '309985a8892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_sample_craft_accuracy',
-      'indicator_name': '样品工艺单准确性',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 18,
-      'statistical_indicator_id': '30998883892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_dh_craft_accuracy',
-      'indicator_name': '大货工艺单准确性',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 19,
-      'statistical_indicator_id': '309988e3892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_custom_retail_price',
-      'indicator_name': '客户零售价',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 20,
-      'statistical_indicator_id': '30997838892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_custom_actual_deliver_date',
-      'indicator_name': '客人沟通后实际交期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 21,
-      'statistical_indicator_id': '30997613892111eab5d850334b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '是,否,未知',
-      'indicator_code': 'cuso_is_delivery_ontime',
-      'indicator_name': '客户是否按时交齐',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 22,
-      'statistical_indicator_id': '309978a2892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_custom_deliver_overtime',
-      'indicator_name': '距客人交期拖期天数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 23,
-      'statistical_indicator_id': '30997912892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_custom_deliver_overtime_reason',
-      'indicator_name': '延期交货原因',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 24,
-      'statistical_indicator_id': '309986f9892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': '合格,不合格,退步接受,现场返修,未知',
-      'indicator_code': 'cuso_dress_check_result',
-      'indicator_name': '成衣客人验货结果',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 25,
-      'statistical_indicator_id': '3099797b892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_disqualification_deal_remark',
-      'indicator_name': '不合格处理备注',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 26,
-      'statistical_indicator_id': '3099881e892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_delivery_detail',
-      'indicator_name': '交货详情',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 27,
-      'statistical_indicator_id': '30996081892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_notice_kptime',
-      'indicator_name': '通知开票时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 28,
-      'statistical_indicator_id': '309965b0892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_actual_kptime',
-      'indicator_name': '实际开票时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 29,
-      'statistical_indicator_id': '30997591892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'cuso_receipt_time',
-      'indicator_name': '收款时间',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 30,
-      'statistical_indicator_id': '30997613892111eab5d8506b4b2360c8',
+      'statistical_indicator_id': '11ec7c3b892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }],
     'statistical_indicator_type_id': '',
     'typename': ''
   }],
-  'statistical_type_id': '402888f371ba89940171ba94a9e80007',
-  'type_code': 'customerorder_info',
-  'type_name': '客户订单相关'
-}, {
-  'sectypelist': [{
-    'indicatorlist': [{
-      'enum_value': '面料,辅料,费用',
-      'indicator_code': 'mi_material_type',
-      'indicator_name': '物料类型',
-      'is_default_select': 0,
-      'search_type': '2',
-      'sort_num': 1,
-      'statistical_indicator_id': '3553ed89892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_category',
-      'indicator_name': '面料品类',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 2,
-      'statistical_indicator_id': '3553fad0892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_name',
-      'indicator_name': '物料名称',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 3,
-      'statistical_indicator_id': '3553df02892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_color_name',
-      'indicator_name': '物料颜色',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 4,
-      'statistical_indicator_id': '3553df6c892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_standard_name',
-      'indicator_name': '物料规格',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 5,
-      'statistical_indicator_id': '3553dfcf892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_location',
-      'indicator_name': '面料使用部位',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 6,
-      'statistical_indicator_id': '3553d828892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_ml_managers',
-      'indicator_name': '面料业务员',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 7,
-      'statistical_indicator_id': '3553db7c892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_purchase_measure',
-      'indicator_name': '采购数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 8,
-      'statistical_indicator_id': '3553ee2f892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_has_deliver_number',
-      'indicator_name': '发货数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 9,
-      'statistical_indicator_id': '3553eedd892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_has_storage_number',
-      'indicator_name': '入库数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 10,
-      'statistical_indicator_id': '3553ef4f892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_ydz',
-      'indicator_name': '溢短装',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 11,
-      'statistical_indicator_id': '3553dc3e892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_deliver_count',
-      'indicator_name': '面料发货次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 12,
-      'statistical_indicator_id': '3553dcc0892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_history_deliver_info',
-      'indicator_name': '历次发货时间/数量',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 13,
-      'statistical_indicator_id': '3553dd45892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_surplus_material_number',
-      'indicator_name': '剩余面料数量',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 14,
-      'statistical_indicator_id': '3553ddff892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_surplus_material_amount',
-      'indicator_name': '剩余面料金额',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 15,
-      'statistical_indicator_id': '3553de85892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_pay_total_amount',
-      'indicator_name': '结算金额',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 16,
-      'statistical_indicator_id': '3553f004892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_inquire_number',
-      'indicator_name': '询价次数',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 17,
-      'statistical_indicator_id': '3553f086892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_order_date',
-      'indicator_name': '面料下单日期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 18,
-      'statistical_indicator_id': '3553f0f1892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_plan_delivery_date',
-      'indicator_name': '面料预计到货日期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 19,
-      'statistical_indicator_id': '3553f157892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_one_delivery_date',
-      'indicator_name': '一批实际交期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 20,
-      'statistical_indicator_id': '3553f1bc892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_one_finish_period',
-      'indicator_name': '一批完成周期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 21,
-      'statistical_indicator_id': '3553f25e892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_all_delivery_date',
-      'indicator_name': '面料全部到厂日期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 22,
-      'statistical_indicator_id': '3553f2d1892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }, {
-      'enum_value': null,
-      'indicator_code': 'mi_material_all_finish_period',
-      'indicator_name': '面料全部到厂周期',
-      'is_default_select': 0,
-      'search_type': '1',
-      'sort_num': 23,
-      'statistical_indicator_id': '3553f346892111eab5d8506b4b2360c8',
-      'statistical_indicator_type_id': ''
-    }],
-    'statistical_indicator_type_id': '',
-    'typename': ''
-  }],
-  'statistical_type_id': '402888f371be4a4b0171bf9c22e20000',
-  'type_code': 'material_info',
-  'type_name': '物料相关'
+  'statistical_type_id': '402888f371ba89940171ba92ebfa0003',
+  'type_code': 'badorder_info',
+  'type_name': '坏单信息'
 }]
 
-export default { '指标': arr }
+export default {
+  '指标': arr
+}

@@ -3,68 +3,68 @@
  */
 const obj = {
   'badorder_info': {
-    'bad_bad_total_amount': 11061.68,
-    'bad_czsw_amount': 51,
+    'bad_bad_total_amount': 43232.18,
+    'bad_czsw_amount': 2751,
     'bad_jgbg_amount': 46,
-    'bad_jqzk_amount': 5431.84,
-    'bad_our_bear_amount': 471,
-    'bad_plant_bear_amount': 5491.84,
+    'bad_jqzk_amount': 34902.34,
+    'bad_our_bear_amount': 3171,
+    'bad_plant_bear_amount': 34962.34,
     'bad_prepay_amount': 5481.84,
     'bad_zlzk_amount': 51
   },
   'customerorder_info': {
-    'cuso_custom_dress_number': 3432785,
-    'cuso_custom_order_amount': 431392222.13,
-    'cuso_delivery_num': 2906182,
-    'cuso_discount_amount': 403750311.86,
-    'cuso_settlement_dress_num': 2597593
+    'cuso_custom_dress_number': 3435263,
+    'cuso_custom_order_amount': 431591276.99,
+    'cuso_delivery_num': 3348543,
+    'cuso_discount_amount': 482296840.33,
+    'cuso_settlement_dress_num': 3271770
   },
   'dh_relate': {
-    'dh_bj_cost': 105847.94,
+    'dh_bj_cost': 35456.71,
     'dh_bz_cost': 0,
     'dh_cc_account_cost': 0,
-    'dh_cc_estimate_cost': 101345.54,
-    'dh_dh_craft_number': 206,
+    'dh_cc_estimate_cost': 117622.57,
+    'dh_dh_craft_number': 207,
     'dh_jd_cost': 0,
-    'dh_ml_number': 5098596.38,
-    'dh_ml_total_amount': 154227329.32,
-    'dh_sample_craft_number': 285,
-    'dh_surplus_material_amount': 4354577.16,
-    'dh_zz_cost': 44287.34
+    'dh_ml_number': 5094659.29,
+    'dh_ml_total_amount': 154004654.06,
+    'dh_sample_craft_number': 292,
+    'dh_surplus_material_amount': 4790553.39,
+    'dh_zz_cost': 54489.88
   },
   'material_info': {
-    'mi_deliver_count': 12568,
-    'mi_has_deliver_number': 70465154.57,
-    'mi_has_storage_number': 70465493.6,
-    'mi_pay_total_amount': 199530520.52,
-    'mi_surplus_material_amount': 4701845.5306,
-    'mi_surplus_material_number': 2002063.4
+    'mi_deliver_count': 13748,
+    'mi_has_deliver_number': 74023456.52,
+    'mi_has_storage_number': 74067356.65,
+    'mi_pay_total_amount': 208944692.85,
+    'mi_surplus_material_amount': 5413351.1885,
+    'mi_surplus_material_number': 2296588.4
   },
   'plantorder_info': {
-    'po_day_avg_production': 2059,
-    'po_dispatch_dress_amount': 385258778.74,
-    'po_dispatch_dress_number': 2907604,
-    'po_plant_a_dress_amount': 114150668.66,
-    'po_plant_a_dress_number': 2432,
-    'po_plant_account_number': 2557631,
+    'po_day_avg_production': 957,
+    'po_dispatch_dress_amount': 428867456.66,
+    'po_dispatch_dress_number': 3348522,
+    'po_plant_a_dress_amount': 129820136.22,
+    'po_plant_a_dress_number': 2782,
+    'po_plant_account_number': 3027142,
     'po_plant_app_number': 651,
-    'po_plant_b_dress_amount': 316305.91,
-    'po_plant_c_dress_number': 85,
-    'po_plant_clearing_amount': 114393590.92,
+    'po_plant_b_dress_amount': 428298.03,
+    'po_plant_c_dress_number': 79,
+    'po_plant_clearing_amount': 128948562.79,
     'po_plant_cy_number': 62,
-    'po_plant_pp_number': 878,
-    'po_plant_rebate_amount': -1140017.95,
-    'po_product_days': 11052,
+    'po_plant_pp_number': 932,
+    'po_plant_rebate_amount': -1299871.46,
+    'po_product_days': 341,
     'po_rest_days': 0,
-    'po_total_production': 9829,
-    'po_ww_dress_amount': 461930.14,
-    'po_ww_dress_count': 10476
+    'po_total_production': 59985,
+    'po_ww_dress_amount': 1926205.14,
+    'po_ww_dress_count': 63203
   },
   'purchaseorder_info': {
-    'puro_has_deliver_number': 77413870.81,
-    'puro_has_storage_number': 77374533.56,
-    'puro_price': 286062.8707,
-    'puro_purchase_basic': 85991741.98
+    'puro_has_deliver_number': 81569022.88,
+    'puro_has_storage_number': 81633462.93,
+    'puro_price': 321328.8392,
+    'puro_purchase_basic': 87053735.31
   }
 }
 

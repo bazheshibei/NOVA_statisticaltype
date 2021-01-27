@@ -4,7 +4,8 @@
 <template>
   <div class="tableBox">
 
-    <el-table class="comTable" v-loading="isLoading" element-loading-text="请求数据中"
+    <el-table v-for="item in tableNum" :key="'table_' + item" v-if="item === tableNum"
+      class="comTable" v-loading="isLoading" element-loading-text="请求数据中"
       :data="tableData" :height="tableHeight" size="mini" border :show-summary="true" :summary-method="_summaryMethod"
       :row-style="_rowStyle" :cell-style="_cellStyle" :header-cell-style="_headerStyle" :span-method="_objectSpanMethod"
     >
@@ -69,7 +70,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['countData', 'isLoading', 'colorArr', 'selectArr', 'searchData']),
+    ...mapState(['countData', 'isLoading', 'colorArr', 'selectArr', 'searchData', 'tableNum']),
     ...mapGetters(['tableData'])
   },
   methods: {
