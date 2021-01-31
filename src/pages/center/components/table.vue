@@ -9,27 +9,27 @@
       :data="tableData" :height="tableHeight" size="mini" border :show-summary="true" :summary-method="_summaryMethod"
       :row-style="_rowStyle" :cell-style="_cellStyle" :header-cell-style="_headerStyle" :span-method="_objectSpanMethod"
     >
-      <el-table-column prop="custom_name" fixed>
+      <el-table-column prop="custom_name">
         <template slot="header" slot-scope="scope">
           <div class="thText">客户名称</div>
         </template>
       </el-table-column>
-      <el-table-column prop="dress_type_name" fixed>
+      <el-table-column prop="dress_type_name" width="70">
         <template slot="header" slot-scope="scope">
           <div class="thText">服装品类</div>
         </template>
       </el-table-column>
-      <el-table-column prop="custom_dress_series_name" fixed>
+      <el-table-column prop="custom_dress_series_name">
         <template slot="header" slot-scope="scope">
           <div class="thText">系列名称</div>
         </template>
       </el-table-column>
-      <el-table-column prop="style_name" fixed>
+      <el-table-column prop="style_name"><!-- fixed -->
         <template slot="header" slot-scope="scope">
           <div class="thText">款式名称</div>
         </template>
       </el-table-column>
-      <el-table-column prop="mr_dh_item_name" fixed>
+      <el-table-column prop="mr_dh_item_name"><!-- fixed -->
         <template slot="header" slot-scope="scope">
           <div class="thText">大货项目名称</div>
         </template>

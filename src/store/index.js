@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 
   state: {
-    nowCodeType: 'Dev', //     当前代码类型
+    nowCodeType: 'Prod', //     当前代码类型
     codeObj: { Dev, Prod }, // 代码类型 { Dev: '开发', Prod: '生产' }
     /* 渲染表格 */
     tableNum: 1, //        查询后+1，触发重新渲染表格

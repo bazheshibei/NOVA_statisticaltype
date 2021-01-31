@@ -186,7 +186,6 @@ Tool._tableRow = function (item, data, index) {
     } else if (item[x].length) {
       /* 抽取数据：数组（其他大类） */
       const { list, idObj } = this._forEachArr(item[x], val) /** 抽取数据：数组 **/
-      // console.log('xxxxx ----- ', list, 22222, idObj)
       list.forEach(function (val, key) {
         if (!returnList[key]) {
           returnList[key] = { key }
@@ -207,8 +206,6 @@ Tool._tableRow = function (item, data, index) {
       })
     }
   }
-  // console.log('globalData ----- 11111 ----- ', globalData)
-  // console.log('returnList ----- ', returnList)
   /* ----- 添加关联属性 && 排序 ----- */
   const addObj = {}
   let addList = []

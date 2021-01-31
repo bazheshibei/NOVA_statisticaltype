@@ -62,8 +62,8 @@ Prod.A_getData = function (state, getters, dispatch, params) {
     if (operationType === 'search') {
       /* 搜索 */
       const suc = function (res) {
-        console.log('数据 ----- res:', res)
-        localStorage.setItem('数据', JSON.stringify(res))
+        // console.log('数据 ----- res:', res)
+        // localStorage.setItem('数据', JSON.stringify(res))
         state[typeObj[operationType]] = true //               可以：搜索 / 导出
         state.isLoading = false //                            关闭：加载动画
         const { datalist, datanum = 0 } = res

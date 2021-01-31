@@ -41,6 +41,13 @@ import { mapState, mapGetters } from 'vuex'
 import ComSearch from './components/search' //               搜索模块
 import ComTable from './components/table' //                 表格模块
 import ComAdvancedQuery from './components/advancedQuery' // 高级查询
+import Store from '@/store'
+
+/* 回车：查询 */
+document.addEventListener('keyup', (event) => {
+  Store.dispatch('search', { operationType: 'search', isLoading: true })
+})
+
 export default {
   components: { ComSearch, ComTable, ComAdvancedQuery },
   data() {
