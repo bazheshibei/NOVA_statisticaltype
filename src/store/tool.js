@@ -198,7 +198,7 @@ Tool._tableRow = function (item, data, index) {
     } else {
       /* 抽取数据：对象（大货、开发、设计相关） */
       val.forEach(function (str) {
-        otherData[str] = objOrArr[str] || ''
+        otherData[str] = objOrArr[str] !== null ? objOrArr[str] : ''
       })
     }
   }
@@ -237,7 +237,7 @@ Tool._forEachArr = function (attrArr, selectArr, code_p) {
     attrArr.forEach(function (obj) {
       const data = {}
       selectArr.forEach(function (str) {
-        data[str] = obj[str] || ''
+        data[str] = obj[str] !== null ? obj[str] : ''
       })
       list.push(data)
     })
@@ -247,9 +247,8 @@ Tool._forEachArr = function (attrArr, selectArr, code_p) {
       const data = {}
       let isPush = false // 是否 push
       selectArr.forEach(function (str) {
-        data[str] = obj[str] || obj[str] === 0 ? obj[str] : ''
-        // console.log(11111, str, obj[str], obj[str] || obj[str] === 0)
-        if (obj[str] || obj[str] === 0) {
+        data[str] = obj[str] !== null ? obj[str] : ''
+        if (obj[str] !== null) {
           isPush = true
         }
       })
