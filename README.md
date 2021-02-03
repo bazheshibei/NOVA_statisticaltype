@@ -1,6 +1,6 @@
 # nova_total
 
-> 自定义统计
+> 自定义统计.
 
 ## Build Setup
 
