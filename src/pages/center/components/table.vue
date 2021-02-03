@@ -42,14 +42,15 @@
           <template slot="header" slot-scope="scope">
             <el-popover placement="top" width="250" trigger="click">
               <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.code]" size="mini" placeholder="多个查询空格分隔" @clear="clear(val.code)" @change="change(val.code, $event, val.code_p)"></el-input>
-              <div class="thText" slot="reference" @click="tableHeaderClick(index, key)">
+              <div class="thText" slot="reference" :title="val.describecontent" @click="tableHeaderClick(index, key)">
                 {{val.label}}<span>&nbsp;<i class="el-icon-search" :class="searchObj[val.code] ? 'thActive' : ''"></i></span>
               </div>
             </el-popover>
           </template>
           <template slot-scope="scope">
             <div class="ComTableCell">
-              <span v-if="scope.row[val.code]">{{scope.row[val.code]}}</span>
+              <!-- <span v-if="scope.row[val.code] || scope.row[val.code] === 0">{{scope.row[val.code]}}</span> -->
+              <span v-if="scope.row[val.code] || scope.row[val.code] === 0" v-html="scope.row[val.code]"></span>
             </div>
           </template>
         </el-table-column>
@@ -108,7 +109,7 @@ export default {
       /** 添加数据 **/
       this.$store.commit('assignData2', { name: 'searchHeader', obj, index })
       /** 请求：数据 **/
-      this.$store.dispatch('A_getData')
+      this.$store.dispatch('A_getData', { isLoading: true })
     },
     /**
      * [合计内容]
@@ -136,7 +137,7 @@ export default {
      * [合并：表格单元格]
      */
     _objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-      if (columnIndex < 4 || (typeof column.columnKey === 'string' && column.columnKey.split('^')[1] === '1')) {
+      if (columnIndex < 5 || (typeof column.columnKey === 'string' && column.columnKey.split('^')[1] === '1')) {
         if (row.arrLength) {
           return { rowspan: row.arrLength, colspan: 1 } // 合并
         } else {
@@ -190,7 +191,8 @@ export default {
   border: 0;
 }
 .thActive {
-  color: #409EFF;
+  color: #E6A23C;
+  font-weight: bold;
 }
 .thText {
   text-align: center;

@@ -45,7 +45,9 @@ import Store from '@/store'
 
 /* 回车：查询 */
 document.addEventListener('keyup', (event) => {
-  Store.dispatch('search', { operationType: 'search', isLoading: true })
+  if (String(event.keyCode) === '13') {
+    Store.dispatch('search', { operationType: 'search', isLoading: true })
+  }
 })
 
 export default {

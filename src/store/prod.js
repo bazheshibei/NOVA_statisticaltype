@@ -119,7 +119,7 @@ Prod.A_count = function (state, getters, dispatch) {
     }
     const suc = function (res) {
       // console.log('合计 ----- res:', res)
-      // localStorage.setItem('合计', JSON.stringify(res))
+      localStorage.setItem('合计', JSON.stringify(res))
       state.is_A_count = true // 是否：可以合计
       state.countData = res //   赋值：合计数据
     }

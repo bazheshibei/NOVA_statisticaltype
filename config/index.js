@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       '/api_t': {
-        target: 'http://192.168.9.121:8080/nova', // 邰
+        target: 'http://192.168.9.115:8080/nova', // 邰
         secure: false, // proxy https
         changeOrigin: true,
         pathRewrite: {
