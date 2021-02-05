@@ -8,7 +8,8 @@ const Tool = {}
  * @return {[Array]}  arr           整理后的指标数组
  */
 Tool.returnSelectArr = function (res = [], selectNodeObj = {}) {
-  const arr = []
+  const selectArr = []
+  const asdObj = {}
   res.forEach(function (data, index_1) {
     /* ----- 拆分大类：[大货相关、开发相关、设计相关、坏单信息......] ----- */
     const { type_name, type_code, statistical_type_id, sectypelist } = data // type_name: 大货相关、开发相关
@@ -52,15 +53,19 @@ Tool.returnSelectArr = function (res = [], selectNodeObj = {}) {
             }
           }
         }
+        /* 记录：是否合并 */
+        if (String(val.secondtype) === '1') {
+          asdObj[val.indicator_code] = true
+        }
         /* 添加数据 */
         targetArr[targetObj[typename || '其他']].children.push(val)
       })
     })
     obj.children = targetArr
-    arr.push(obj)
+    selectArr.push(obj)
   })
-  // console.log('整理后的指标数组 ----- ', arr)
-  return arr
+  // console.log('整理后的指标数组 ----- ', selectArr)
+  return { selectArr, asdObj }
 }
 
 /**
@@ -159,7 +164,6 @@ Tool._tableData = function (state) {
   /* 循环：原始数据 */
   // console.log('dataList ----- ', dataList)
   dataList.forEach(function (item, index) { // item: 单束原始数据：单条  index: 单束数据索引
-    // console.log('啊啊啊啊啊 ----- ', item.purchasedeliver_info)
     const arr = that._tableRow(item, searchVal, index) /** 表格：单束数据 **/
     arr[0].arrLength = arr.length
     list = list.concat(arr)
@@ -202,6 +206,7 @@ Tool._tableRow = function (item, data, index) {
       })
     }
   }
+  // console.log('returnList ----- ', returnList)
   /* ----- 导出 ----- */
   if (Object.keys(otherData).length) {
     /* 抽取的数据：有 (抽取数据：对象) */
@@ -232,14 +237,86 @@ Tool._tableRow = function (item, data, index) {
  */
 Tool._forEachArr = function (attrArr, selectArr, code_p) {
   const list = [] //  此数组属性中，符合下拉选项的数据
-  if (code_p === 'purchasedeliver_info' || code_p === 'purchaseorder_info' || code_p === 'material_info') {
-    /* ----- 相关联的三个大类 ----- */
-    attrArr.forEach(function (obj) {
+  if (code_p === 'material_info' || code_p === 'purchaseorder_info' || code_p === 'purchasedeliver_info') {
+    /* ----- 相关联的三个大类： 物料分析相关 || 采购跟进相关 || 大货验货相关 ----- */
+    let asd_id = ''
+    let asd_num = 1
+    let asd_index = 0
+    attrArr.forEach(function (obj, index) {
       const data = {}
       selectArr.forEach(function (str) {
         data[str] = obj[str] !== null ? obj[str] : ''
       })
       list.push(data)
+      /* ----- 统计合并 ----- */
+      const countObj = {
+        material_info: {
+          name_1: 'mi_system_material_statistics_id',
+          name_2: 'asd_mi'
+        },
+        purchaseorder_info: {
+          name_1: 'puro_purchase_order_detail_id',
+          name_2: 'asd_puro'
+        }
+      }
+      const { name_1 = '', name_2 = '' } = countObj[code_p] || {}
+      if (name_1) {
+        if (asd_id && asd_id !== obj[name_1]) {
+          /* ----- 遇到新的ID ----- */
+          /* 记录上一模块的合并数据 */
+          list[asd_index][name_2] = asd_num // 添加合并记录
+          if (obj[name_1]) {
+            /* 当前行__有值：重新计算合并 */
+            asd_id = obj[name_1] // 重新记录：值
+            asd_num = 1 //          重新记录：合并行数
+            asd_index = index //    重新记录：合并起始行索引
+          } else {
+            /* 当前行__没值：记录当前模块合并数据 && 重新计算合并 */
+            list[index][name_2] = 1 // 添加合并记录
+            asd_id = '' //             重新记录：值
+            asd_num = 1 //             重新记录：合并行数
+            asd_index = index + 1 //   重新记录：合并起始行索引
+          }
+        } else if (asd_id && asd_id === obj[name_1]) {
+          /* ----- 相同ID，合并记录+1 ----- */
+          asd_num += 1
+        } else if (!asd_id) {
+          /* ----- asd_id === ''时 ----- */
+          if (obj[name_1]) {
+            /* 当前行__有值：记录当前的 值 和 index */
+            asd_id = obj[name_1] // 记录：值
+            asd_index = index //    记录：合并起始行索引
+          } else {
+            // 当前行__没值：记录当前模块合并数据
+            list[index][name_2] = 1 // 添加合并记录
+            asd_id = '' //             重新记录：合并行数
+            asd_num = 1 //             重新记录：合并行数
+          }
+        }
+        if (index === attrArr.length - 1) {
+          /* 添加合并记录 */
+          list[index][name_2] = asd_num
+        }
+      }
+      // if (code_p === 'material_info') {
+      //   if (asd_id && asd_id !== obj.mi_system_material_statistics_id) { //       遇到新的ID
+      //     /* 添加合并记录 */
+      //     list[asd_index].asd_num = asd_num
+      //     /* 重置 */
+      //     asd_id = obj.mi_system_material_statistics_id
+      //     asd_num = 1
+      //     asd_index = index
+      //   } else if (asd_id && asd_id === obj.mi_system_material_statistics_id) { // 相同ID，合并记录+1
+      //     asd_num += 1
+      //   } else if (!asd_id) { //                                                   记录第一条的ID和index
+      //     asd_id = obj.mi_system_material_statistics_id
+      //     asd_index = index
+      //   }
+      //   if (index === attrArr.length - 1) {
+      //     /* 添加合并记录 */
+      //     list[asd_index].asd_num = asd_num
+      //   }
+      // }
     })
   } else {
     /* ----- 其他大类 ----- */

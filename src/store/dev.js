@@ -16,11 +16,15 @@ Dev.A_getCode = function (state, dispatch, that) {
   const res = LocalData['指标'] || []
   /* 返回：整理后的指标数组 */
   const selectNodeObj = JSON.parse(localStorage.getItem('NOVA_total_selectNodeObj')) || {} //   select 选中的节点对象 [通过 Tool.returnSearchData() 生成 searchData, searchVal, searchLabel]
-  const selectArr = Tool.returnSelectArr(res, selectNodeObj)
+  const { selectArr, asdObj } = Tool.returnSelectArr(res, selectNodeObj)
   state.selectArr = selectArr
+  state.asdObj = asdObj
   /* 计算：表格高度 */
   that._countHeight()
+  console.log('指标 ----- ', selectArr)
 }
+
+// secondtype=1的进行合并
 
 /**
  * [请求：数据]

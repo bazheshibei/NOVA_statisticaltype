@@ -44,11 +44,15 @@
               <el-input :ref="'input_' + index + '_' + key" clearable v-model="searchObj[val.code]" size="mini" placeholder="多个查询空格分隔" @clear="clear(val.code)" @change="change(val.code, $event, val.code_p)"></el-input>
               <div class="thText" slot="reference" :title="val.describecontent" @click="tableHeaderClick(index, key)">
                 {{val.label}}<span>&nbsp;<i class="el-icon-search" :class="searchObj[val.code] ? 'thActive' : ''"></i></span>
+                <!-- <p>{{val.code}}</p> -->
               </div>
             </el-popover>
           </template>
           <template slot-scope="scope">
             <div class="ComTableCell">
+              <!-- <p>{{val.code_p}}</p>
+              <p>{{val.code}}</p>
+              <p>**********</p> -->
               <!-- <span v-if="scope.row[val.code] || scope.row[val.code] === 0">{{scope.row[val.code]}}</span> -->
               <span v-if="scope.row[val.code] || scope.row[val.code] === 0" v-html="scope.row[val.code]"></span>
             </div>
@@ -71,7 +75,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['countData', 'isLoading', 'colorArr', 'selectArr', 'searchData', 'tableNum']),
+    ...mapState(['countData', 'isLoading', 'colorArr', 'selectArr', 'searchData', 'tableNum', 'asdObj']),
     ...mapGetters(['tableData'])
   },
   methods: {
@@ -137,11 +141,39 @@ export default {
      * [合并：表格单元格]
      */
     _objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-      if (columnIndex < 5 || (typeof column.columnKey === 'string' && column.columnKey.split('^')[1] === '1')) {
+      const { asdObj } = this
+      const { columnKey: columnStr = '' } = column
+      const [, columnKey = '', code_p = '', code = ''] = columnStr.split('^') || []
+      /* ----- 固定列 || 大货相关 || 开发相关 || 设计相关 || 客户订单相关 ----- */
+      if (columnIndex < 5 || columnKey === '1') {
         if (row.arrLength) {
-          return { rowspan: row.arrLength, colspan: 1 } // 合并
+          return { rowspan: row.arrLength, colspan: 1 }
         } else {
-          return { rowspan: 0, colspan: 0 } //      隐藏
+          return { rowspan: 0, colspan: 0 }
+        }
+      }
+      /* ----- 物料分析相关 ----- */
+      if (code_p === 'material_info') {
+        if (row.asd_mi) {
+          return { rowspan: row.asd_mi, colspan: 1 }
+        } else if (row.arrLength && !row.asd_mi) {
+          return { rowspan: 1, colspan: 1 }
+        } else {
+          return { rowspan: 0, colspan: 0 }
+        }
+      }
+      /* ----- 采购跟进相关 ----- */
+      if (code_p === 'purchaseorder_info') {
+        if (row.asd_puro) {
+          if (asdObj[[code]]) {
+            return { rowspan: row.asd_puro, colspan: 1 }
+          } else {
+            return { rowspan: 1, colspan: 1 }
+          }
+        } else if (row.arrLength && !row.asd_puro) {
+          return { rowspan: 1, colspan: 1 }
+        } else {
+          return { rowspan: 0, colspan: 0 }
         }
       }
     },

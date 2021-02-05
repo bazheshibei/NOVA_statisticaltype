@@ -20,8 +20,9 @@ Prod.A_getCode = function (state, dispatch, that) {
     // localStorage.setItem('指标', JSON.stringify(res))
     /* 返回：整理后的指标数组 */
     const selectNodeObj = JSON.parse(localStorage.getItem('NOVA_total_selectNodeObj')) || {} //   select 选中的节点对象 [通过 Tool.returnSearchData() 生成 searchData, searchVal, searchLabel]
-    const selectArr = Tool.returnSelectArr(res, selectNodeObj)
+    const { selectArr, asdObj } = Tool.returnSelectArr(res, selectNodeObj)
     state.selectArr = selectArr
+    state.asdObj = asdObj
     /* 计算：表格高度 */
     that._countHeight()
   }

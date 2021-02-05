@@ -138,8 +138,8 @@ export default {
 /*** 表格模块 ***/
 .ComTable {
   width: 100%;
-  border-top: 1px solid #EBEEF5;
-  border-bottom: 1px solid #EBEEF5;
+  border-top: 1px solid #DCDFE6;
+  border-bottom: 1px solid #DCDFE6;
   flex: 1;
 }
 td >.cell {

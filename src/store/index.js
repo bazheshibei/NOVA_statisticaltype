@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     colorArr: ['#ff0000', '#ffc000', '#92d050', '#00b0f0', '#8064a2', '#76933c', '#e26b0a', '#558ed5', '#963634'],
     /* 接口返回 */
     selectArr: [], //      整理后的指标数组
+    asdObj: {}, //         需要合并的指标 { 指标code: true }
     dataList: [], //       表格数据[未处理]
     /* 页面操作 */
     searchText: '', //     搜索：input
@@ -56,6 +57,30 @@ const store = new Vuex.Store({
      * [表格数据]
      */
     tableData: state => {
+      console.log('tableData ----- ', Tool._tableData(state))
+
+      // asd_mi: 1
+      // asd_puro: 1
+      // custom_dress_series_name: "INDIGO休闲系"
+      // custom_name: "SLT-BS"
+      // dh_item_name: "testdh01"
+      // dh_style_code: "testdh01"
+      // dress_type_name: "夹克"
+      // index: 1
+      // key: 2
+      // mi_material_color_name: "WHITE白色"
+      // mi_material_name: "树脂扣"
+      // mi_material_standard_name: "标准"
+      // mr_dh_item_name: "testdh01"
+      // purd_color_name: "WHITE白色"
+      // purd_material_name: "树脂扣"
+      // purd_standard_name: "标准"
+      // puro_color_name: "WHITE白色"
+      // puro_material_name: "树脂扣"
+      // puro_purchase_order_number: "CGD-2021-000016"
+      // puro_standard_name: "标准"
+      // style_name: "testdh01"
+
       return Tool._tableData(state)
     },
     /**
