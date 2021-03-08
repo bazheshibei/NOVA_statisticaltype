@@ -2399,7 +2399,7 @@ const arr = [{
       'statistical_indicator_id': '1e62ed2d892111eab5d8506b4b2360c8',
       'statistical_indicator_type_id': ''
     }, {
-      'describecontent': '获取日产量提报页面的工厂实际交期(具备可发货条件)；如果未提报日产量则获取委外总结中的交期',
+      'describecontent': '获取日产量提报页面的工厂实际交期(具备可发货条件)',
       'enum_value': null,
       'indicator_code': 'po_real_deliver_date',
       'indicator_name': '工厂实际交期',

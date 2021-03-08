@@ -33,10 +33,6 @@
             :label="item" :value="item"
           ></el-option>
         </el-select>
-        <!-- 值：日期选择器 '4' -->
-        <el-date-picker class="com_4"  v-if="selectVal[submitVal[index].typecode + '^' + submitVal[index].indicatorcode] && selectVal[submitVal[index].typecode + '^' + submitVal[index].indicatorcode].type === '4'"
-          v-model="submitVal[index].searchvalue" type="date" size="mini" placeholder="请选择日期" value-format="yyyy-MM-dd" @change="_proving"
-        ></el-date-picker>
         <!-- 删除 -->
         <el-button class="com_5" size="mini" icon="el-icon-delete-solid" @click="deleteData(index)"></el-button>
       </div>
@@ -145,7 +141,7 @@ export default {
           let arr = []
           let type = '1'
           type = search_type === null ? '1' : search_type
-          if (String(search_type) === '2') {
+          if (search_type === '2') {
             arr = enum_value === null ? [] : enum_value.split(',')
           }
           obj[`${typecode}^${indicatorcode}`] = { type, arr }
